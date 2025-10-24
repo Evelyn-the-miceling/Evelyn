@@ -94,6 +94,8 @@ class Group_Sorter:
 
             for number in curr_group:
 
+                pass
+
 
 
 
@@ -115,6 +117,7 @@ class Group_Sorter:
 
         
 DataParser = Group_Sorter()
-
-print(DataParser.determine_group_means("G-10"))
+groups = list(DataParser.tutorial_groups.keys())
+for i in range(5):
+    print(DataParser.determine_group_means(groups[random.randint(0, len(groups))]))
 
