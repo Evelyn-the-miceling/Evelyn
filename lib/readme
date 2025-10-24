@@ -1,12 +1,8 @@
-Option 1:
-1. Using CBT, split each group by gender, stem/non-stem and CGPA/
-Limitation: Return 8 leaf node, which is odd and had to implement to select 5 ppl from the category
-            Classified students are separated unevenly into the leaf nodes, hence lead to uneven selection of students
-            CBT is good for classification, not sorting
+Part 1:
+1. Using CBT, split each group by gender, stem/non-stem 
         
-Option 2: 
+Part 2: 
 1. Find the mean of CGPA of one tutorial group
-2. Find the ratio of the different classification of students (gender, school)
-3. Set the range of acceptable ratio of students and mean for CGPA for students.
-4. Random grouping of the students into the groups.
-5. Ensure that each criteria is met for each group.
+2. Check within the range of mean
+3. If meet expectation, keep
+4. else, randomise again.
