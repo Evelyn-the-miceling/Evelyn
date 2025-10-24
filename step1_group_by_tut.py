@@ -41,22 +41,6 @@ def OneBigList(data = "records.csv"):
             students.append(ConvertToDict(line))
     return students
 
-#combine all functions together
-def trys():
-    students = OneBigList("records.csv")
-
-    #print to check
-    print("\nTotal records", len(students))
-    print("Sample dicts(3 lines)")
-    for i in range(3):
-        print(students[i])
-
-#trys()
-#to divide each student into their tut group
-
-#import from step2
-#from step2_convert_to_list import OneBigList
-
 #function to gather same tut group in 1 dictionary with key = tut no.
 def GroupByTut(students):
     #create dictionary
@@ -79,14 +63,23 @@ def GroupByTut(students):
     return groups
 
 #comebine functions
-def main():
+def readfile():
     students = OneBigList("records.csv")
     groups = GroupByTut(students)
+    return groups
 
-    #print to check
+if __name__ == "__main__":
+    groups = readfile()
     print("\nNumber of tutorial groups:", len(groups)) 
     print("Example group: G-1")
     for i in groups["G-1"][:5]:
         print(i["student_id"], i["name"], i["school"], i["cgpa"])
 
-main()
+"""
+you need to type this if you build your code in differnce file
+
+from step1_group_by_tut import *
+groups = readfile()  
+
+then you will get 1 big dictionary same as in file that I show you
+"""
