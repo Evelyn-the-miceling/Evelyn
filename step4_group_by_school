@@ -17,3 +17,5 @@ def pop_one_stem_one_nonstem(people):
         if len(team) == 2:
             break
     return team
+
+pop_one_stem_one_nonstem(people)
