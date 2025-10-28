@@ -78,31 +78,88 @@ class Group_Sorter:
 
         return GPA_mean, F_M_ratio, S_NS_ratio
     
+    def indiv_group_mean(self, ls):
+        GPA_total = 0
+        F_total = 0
+        M_total = 0
+        S_school = 0
+        NS_school = 0
+
+        for person in ls:
+            GPA_total += person[5]
+
+            if person[4] == "Female":
+                F_total += 1
+            else:
+                M_total += 1
+            
+            if person[2] == "S":
+                S_school += 1
+            else:
+                NS_school += 1
+
+        GPA_mean = GPA_total / len(ls)
+        F_M_ratio = F_total / len(ls) 
+        S_NS_ratio = S_school / len(ls) 
+
+        return GPA_mean, F_M_ratio, S_NS_ratio
+    
     def reshuffle_group(self, group_list):
         return random.shuffle(group_list)
     
-    def sort_small_group(self, tutorial_group):
+    def sort_by_GPA(self, tutorial_group):
         GPA_mean, F_M_ratio, S_NS_ratio = self.determine_group_means(tutorial_group)
 
         tutorial_group_list = self.retrieve_tut_group(tutorial_group)
 
-        group = list(range(1, 50))
-        while True:
-            groups = self.reshuffle_group(group)
-            
-            curr_group = groups[:5]
-
-            for number in curr_group:
-
-                pass
-
-
-
-
-
-
+        sorted_list = self.qs(tutorial_group_list)
         
-
+        groups = []
+        group = []
+        for i in range(len(sorted_list)):
+            if len(group) < 4 or len(group) == 5:
+                if len(group) == 5:
+                    groups.append(group)
+                    group = []
+                group.append(sorted_list[i])
+                group.append(sorted_list[len(sorted_list)-1-i])
+            elif len(group) == 4:
+                group.append(sorted_list[i])
+                
+        for i in groups:
+            print("Start", len(i))
+            print("Means:", self.indiv_group_mean(i))
+            for j in i:
+                print(j)
+            print("End")
+                
+        
+        
+    #Toolset
+    def bubble_sort(self, ls):
+        for i in range(0, len(ls)-1):
+            swapped = 0
+            for j in range (0, len(ls)-1):
+                if ls[j][5]> ls[j + 1][5]:
+                    ls[j], ls[j+1] = ls[j+1], ls[j]
+                    swapped += 1
+            if not swapped:
+                break        
+        return ls
+    
+    def qs(self, ls):
+        if len(ls) <= 1:
+            return ls
+        pivot = ls[0][5]
+        left = []
+        right = []
+        for i in ls[1:]:
+            if i[5] < pivot:
+                left.append(i)
+            else:
+                right.append(i)
+        return self.qs(left) + [ls[0]] + self.qs(right)
+            
 
 
 
@@ -117,7 +174,8 @@ class Group_Sorter:
 
         
 DataParser = Group_Sorter()
-groups = list(DataParser.tutorial_groups.keys())
-for i in range(5):
-    print(DataParser.determine_group_means(groups[random.randint(0, len(groups))]))
+DataParser.sort_by_GPA("G-1")
+# groups = list(DataParser.tutorial_groups.keys())
+# print(groups)
+
 
