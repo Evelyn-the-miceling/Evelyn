@@ -114,6 +114,8 @@ class Group_Sorter:
         tutorial_group_list = self.retrieve_tut_group(tutorial_group)
 
         sorted_list = self.qs(tutorial_group_list)
+        
+        print("Menas", self.determine_group_means("G-1"))
                 
         groups = []
         group = []
@@ -140,10 +142,9 @@ class Group_Sorter:
             else:
                 passed.append(group)
 
-                
+                 
         print(len(more_males))
         print(len(more_females))
-        print(len(passed))
         print(len(groups))
                 
                 
