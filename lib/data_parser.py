@@ -41,13 +41,16 @@ class Group_Sorter:
         for group_key in self.tutorial_groups.keys():
             group = self.tutorial_groups.get(group_key)
 
-            for student in group:
-                if student[2] in non_stem:
+            # for student in group:
+            #     if student[2] in non_stem:
                     
-                    student[2], student[5] = "NS",float(student[5])
+            #         student[2], student[5] = "NS",float(student[5])
             
-                else:
-                    student[2], student[5] = "S",float(student[5])
+            #     else:
+            #         student[2], student[5] = "S",float(student[5])
+            
+            for student in group:
+                student[5] = float(student[5])
 
     def determine_group_means(self, tutorial_group):
 
@@ -82,8 +85,6 @@ class Group_Sorter:
         GPA_total = 0
         F_total = 0
         M_total = 0
-        S_school = 0
-        NS_school = 0
 
         for person in ls:
             GPA_total += person[5]
@@ -93,30 +94,31 @@ class Group_Sorter:
             else:
                 M_total += 1
             
-            if person[2] == "S":
-                S_school += 1
-            else:
-                NS_school += 1
+            # if person[2] == "S":
+            #     S_school += 1
+            # else:
+            #     NS_school += 1
 
         GPA_mean = GPA_total / len(ls)
         F_M_ratio = F_total / len(ls) 
-        S_NS_ratio = S_school / len(ls) 
+        # S_NS_ratio = S_school / len(ls) 
 
-        return GPA_mean, F_M_ratio, S_NS_ratio
+        return GPA_mean, F_M_ratio
     
     def reshuffle_group(self, group_list):
         return random.shuffle(group_list)
     
     def sort_by_GPA(self, tutorial_group):
-        GPA_mean, F_M_ratio, S_NS_ratio = self.determine_group_means(tutorial_group)
+        # GPA_mean, F_M_ratio, S_NS_ratio = self.determine_group_means(tutorial_group)
 
         tutorial_group_list = self.retrieve_tut_group(tutorial_group)
 
         sorted_list = self.qs(tutorial_group_list)
-        
+                
         groups = []
         group = []
-        for i in range(len(sorted_list)):
+        i = 0
+        while len(groups) < 10:
             if len(group) < 4 or len(group) == 5:
                 if len(group) == 5:
                     groups.append(group)
@@ -125,13 +127,25 @@ class Group_Sorter:
                 group.append(sorted_list[len(sorted_list)-1-i])
             elif len(group) == 4:
                 group.append(sorted_list[i])
+            i += 1
                 
-        for i in groups:
-            print("Start", len(i))
-            print("Means:", self.indiv_group_mean(i))
-            for j in i:
-                print(j)
-            print("End")
+        more_males = []
+        more_females = []
+        passed = []
+        for group in groups:
+            if self.indiv_group_mean(group)[1] < 0.4:
+                more_females.append(group)
+            elif self.indiv_group_mean(group)[1] > 0.6:
+                more_males.append(group)
+            else:
+                passed.append(group)
+
+                
+        print(len(more_males))
+        print(len(more_females))
+        print(len(passed))
+        print(len(groups))
+                
                 
         
         
