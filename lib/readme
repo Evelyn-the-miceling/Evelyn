@@ -6,3 +6,14 @@ Part 2:
 2. Check within the range of mean
 3. If meet expectation, keep
 4. else, randomise again.
+
+
+Plan for solving the male female aspect:
+
+1. Quick sort the entire tutorial group then rainbow method to get 10 groups.
+2. Filter the groups based on if they hit the ratio desired, if yes, then pass if no then fail.
+3. Re-sort the remaining groups again, then rainbow method and repeat process untill 10 groups have passed.
+
+Plan for solving differing schools:
+
+1. 

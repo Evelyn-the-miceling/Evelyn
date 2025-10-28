@@ -175,6 +175,9 @@ class Group_Sorter:
                 right.append(i)
         return self.qs(left) + [ls[0]] + self.qs(right)
             
+    def rainbow_method(self, list):
+        for i in range
+        
 
 
 
