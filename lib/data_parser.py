@@ -53,18 +53,16 @@ class Group_Sorter:
                 student[5] = float(student[5])
 
     def determine_group_means(self, tutorial_group):
-
-        group = self.tutorial_groups.get(tutorial_group)
-        
+        group = tutorial_group
         GPA_total = 0
         F_total = 0
         M_total = 0
         S_school = 0
         NS_school = 0
 
+        
         for person in group:
             GPA_total += person[5]
-
             if person[4] == "Female":
                 F_total += 1
             else:
@@ -108,44 +106,64 @@ class Group_Sorter:
     def reshuffle_group(self, group_list):
         return random.shuffle(group_list)
     
+    def split_and_sort(self, group_list):
+        females = []
+        males = []
+        for person in group_list:
+            if person[4] == "Male":
+                males.append(person)
+            else:
+                females.append(person)
+        
+        
+        females = self.qs(females)
+        males = self.qs(males)
+        
+        combined = []
+        
+        female_male_ratio = self.determine_group_means(group_list)[1]
+        
+        print(female_male_ratio)
+        
+        
+        while len(females) > 0 or len(males) > 0:
+            if len(females) > 0:
+                female = females.pop()
+                combined.append(female)
+            if len(males) > 0:
+                male = males.pop()
+                combined.append(male)
+        
+        return combined[::-1]
+                
+        
+                
+    
     def sort_by_GPA(self, tutorial_group):
         # GPA_mean, F_M_ratio, S_NS_ratio = self.determine_group_means(tutorial_group)
 
         tutorial_group_list = self.retrieve_tut_group(tutorial_group)
-
-        sorted_list = self.qs(tutorial_group_list)
         
-        print("Menas", self.determine_group_means("G-1"))
-                
+        
+        temp = (self.split_and_sort(tutorial_group_list))
+               
+        for i in temp:
+            print(i) 
         groups = []
         group = []
         i = 0
-        while len(groups) < 10:
-            if len(group) < 4 or len(group) == 5:
-                if len(group) == 5:
-                    groups.append(group)
-                    group = []
-                group.append(sorted_list[i])
-                group.append(sorted_list[len(sorted_list)-1-i])
-            elif len(group) == 4:
-                group.append(sorted_list[i])
-            i += 1
-                
+
         more_males = []
         more_females = []
         passed = []
-        for group in groups:
-            if self.indiv_group_mean(group)[1] < 0.4:
-                more_females.append(group)
-            elif self.indiv_group_mean(group)[1] > 0.6:
-                more_males.append(group)
-            else:
-                passed.append(group)
-
-                 
-        print(len(more_males))
-        print(len(more_females))
-        print(len(groups))
+        # for group in groups:
+        #     if self.indiv_group_mean(group)[1] < 0.4:
+        #         more_females.append(group)
+        #     elif self.indiv_group_mean(group)[1] > 0.6:
+        #         more_males.append(group)
+        #     else:
+        #         passed.append(group)
+        
                 
                 
         
@@ -175,10 +193,31 @@ class Group_Sorter:
                 right.append(i)
         return self.qs(left) + [ls[0]] + self.qs(right)
             
-    def rainbow_method(self, list):
-        for i in range
-        
+    def rainbow_method(self, ls):
+        groups = []
+        group = []
+        print("Hi")
+        print(ls)
+        odd = False
+        for i in range(0, len(ls)//2+1):
+            if len(group) < 4:
+                if len(groups) % 2 == 0:
+                    group.append(ls[i])
+                    group.append(ls[-i-1])
+                else:
+                    group.append(ls[-i])
+                    group.append(ls[i])
+            elif len(group) == 4:
+                if len(groups) % 2 == 0:
+                    group.append(ls[i])
+                else:
+                    group.append(ls[-i])
+                
+                groups.append(group)
+                group = []
 
+        return groups
+                
 
 
     #Accessor
