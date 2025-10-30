@@ -50,6 +50,8 @@ class Sorter:
         
         if female_ratio > 0.5:
             pass
+        
+        
     def qs(self, ls):
         if len(ls) <2:
             return ls
