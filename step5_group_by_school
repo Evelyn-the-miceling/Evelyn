@@ -1,0 +1,19 @@
+
+
+person = ("G-1", "5002","CCDS", "Male", "4.02")
+people = [[person]]
+
+stem = ["CCDS", "EEE", "WKW SCI", " MAE", "SPMS","LKCMedicine", "SBS", "CCEB", "CoE", "MSE" ]
+non_stem = ["CoB (NBS)", "NIE", "ADM", "SoH", "SSS", "ASE"]
+
+def pop_one_stem_one_nonstem(people):
+    team = []
+    for i, p in enumerate(people[:]):  # iterate over a copy
+        school = p[2].strip()
+        if school in stem and not any(x[2] in stem for x in team):
+            team.append(people.pop(i))
+        elif school in non_stem and not any(x[2] in non_stem for x in team):
+            team.append(people.pop(i))
+        if len(team) == 2:
+            break
+    return team
