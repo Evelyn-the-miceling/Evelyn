@@ -1,7 +1,7 @@
 #MergeSort algorithm with different criterias:
 
 def Sorting_criteria(student_a, student_b): 
-    #Criterias considered: CGPA, Gender, School
+    #Criterias considered: CGPA, Gender, School (CGPA > Gender > School)
     if student_a["cgpa"] != student_b["cgpa"]:
         return student_a["cgpa"] > student_b["cgpa"] #CGPA is sorted from high to low
     elif student_a["gender"] != student_b["gender"]:
@@ -35,4 +35,5 @@ def MergeSort(a_list):
         return a_sorted_list
     
 #Time Complexity: O(nlogn)
+
 #Space Complexity: O(n + logn) = O(n)
