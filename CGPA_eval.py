@@ -1,4 +1,4 @@
-def Mean_of_CGPA(list):
+def Mean_of_CGPA(list): #Evaluate AVG CGPA of tutorial group
     sum = 0
     for element in list:
         sum += element
@@ -15,3 +15,4 @@ def Check_range(list):
             else: 
 
                 return True
+
