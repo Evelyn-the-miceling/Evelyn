@@ -1,4 +1,5 @@
-
+from step1_group_by_tut import *
+...... = readfile()
 
 person = ("G-1", "5002","CCDS", "Male", "4.02")
 people = [[person]]
@@ -6,16 +7,27 @@ people = [[person]]
 stem = ["CCDS", "EEE", "WKW SCI", " MAE", "SPMS","LKCMedicine", "SBS", "CCEB", "CoE", "MSE" ]
 non_stem = ["CoB (NBS)", "NIE", "ADM", "SoH", "SSS", "ASE"]
 
-def pop_one_stem_one_nonstem(people):
+def pop_one_stem_one_nonstem(gender_subgroup):
+    """
+    Pops (removes) one STEM and one non-STEM student
+    from a gender subgroup (list of dicts).
+    """
     team = []
-    for i, p in enumerate(people[:]):  # iterate over a copy
-        school = p[2].strip()
-        if school in stem and not any(x[2] in stem for x in team):
-            team.append(people.pop(i))
-        elif school in non_stem and not any(x[2] in non_stem for x in team):
-            team.append(people.pop(i))
+
+    # We make a copy of the list for safe iteration
+    for i, student in enumerate(gender_subgroup[:]):
+        school = student["school"].strip()  # remove extra spaces if any
+
+        # pick one from STEM if not already picked
+        if school in stem and not any(s["school"].strip() in stem for s in team):
+            team.append(gender_subgroup.pop(i))
+        
+        # pick one from non-STEM if not already picked
+        elif school in non_stem and not any(s["school"].strip() in non_stem for s in team):
+            team.append(gender_subgroup.pop(i))
+        
+        # stop once we have one of each
         if len(team) == 2:
             break
-    return team
 
-pop_one_stem_one_nonstem(people)
+    return team
