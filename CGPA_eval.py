@@ -11,8 +11,8 @@ def Check_range(list):
     while True:
         for i in range(50):
             if abs(list["G-1"][i]["cgpa"] - mean) <= dev: #Fix to fit with output of list
-                return False
-            else: 
-
                 return True
+            else: 
+                return False
+
 
