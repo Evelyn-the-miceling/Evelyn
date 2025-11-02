@@ -24,14 +24,14 @@ class Sorter:
                 self.data[field[0]] = [field]
                 
     
-    def group_presets(self, group):
+    def build_groups(self, tut_group):
         gpa_total = 0
         female_total = 0
         
         males = []
         females = []
         
-        for person in group:
+        for person in tut_group:
             gpa_total += float(person[5])
             if person[4] == "Female":
                 female_total += 1
@@ -79,11 +79,21 @@ class Sorter:
                 presets.append(update_list[:10][::-1])
                 update_list = update_list[10:]
 
-        print("Mouse", len(presets))
-        for i in presets:
-            print("Brae")
-            for j in i:
-                print(j)
+        new_groups = []
+        temp = []
+        for i in range(10):
+            for j in presets:
+                temp.append(j[i])
+            new_groups.append(temp)
+            temp = []
+
+        for group in new_groups:
+            print(self.calculate_means(group))
+        
+        
+
+
+
 
 
             
@@ -91,7 +101,7 @@ class Sorter:
  
         return 
         
-        
+    #Toolset
     def qs(self, ls):
         if len(ls) <2:
             return ls
@@ -106,10 +116,34 @@ class Sorter:
                 right.append(i)
         
         return self.qs(left) + [pivot] + self.qs(right)
+    
+    def calculate_means(self, group):
+        total_gpa = 0
+        total_female = 0
+        max_repeat = 0
+
+        schools = {}
+
+        for student in group:
+            total_gpa += float(student[5])
+            if student[4] == "Female":
+                total_female += 1
+            if not schools.get(student[2]):
+                schools[student[2]] = 1
+            else:
+                schools[student[2]] = schools[student[2]] + 1
         
+        gpa_mean = total_gpa / len(group)
+        female_ratio = total_female / len(group)
+        max_repeat = max(schools.values())
+
+
+        return gpa_mean, female_ratio, max_repeat
+
+
 
         
     
 test = Sorter()
-result = test.group_presets(test.data["G-1"])
+result = test.build_groups(test.data["G-10"])
 
