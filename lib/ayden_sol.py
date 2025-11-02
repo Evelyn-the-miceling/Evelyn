@@ -41,15 +41,55 @@ class Sorter:
         
         
         gpa_mean = gpa_total / 50
-        female_ratio = round(female_total / 50)
+        female_ratio = female_total / 50
         
         males = self.qs(males)
         females = self.qs(females)
         
         update_list = []
-        
-        if female_ratio > 0.5:
-            pass
+
+        current_ratio = 0
+        current_females = 0
+
+        for i in range(50):
+            if current_ratio < female_ratio:
+                if females:
+                    update_list.append(females[-1])
+                    females.pop()
+                    current_females += 1
+                else:
+                    update_list = update_list + males
+            
+            else:
+                if males:
+                    update_list.append(males[-1])
+                    males.pop()
+                else:
+                    update_list = update_list + females
+
+            current_ratio = current_females/(i+1)
+
+        #Snake method cool idea
+        presets = []
+        for i in range(5):
+            if i % 2 == 0:
+                presets.append(update_list[:10])
+                update_list = update_list[10:]
+            else:
+                presets.append(update_list[:10][::-1])
+                update_list = update_list[10:]
+
+        print("Mouse", len(presets))
+        for i in presets:
+            print("Brae")
+            for j in i:
+                print(j)
+
+
+            
+
+ 
+        return 
         
         
     def qs(self, ls):
@@ -72,5 +112,4 @@ class Sorter:
     
 test = Sorter()
 result = test.group_presets(test.data["G-1"])
-for i in result:
-    print(i)
+

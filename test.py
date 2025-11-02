@@ -1,2 +1,2 @@
 temp = [1, 2, 3]
-print(temp[0])
+print(temp[:2][::-1])
