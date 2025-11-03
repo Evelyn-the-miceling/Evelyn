@@ -87,10 +87,15 @@ class Sorter:
             new_groups.append(temp)
             temp = []
 
-        for group in new_groups:
-            print(self.calculate_means(group))
+        group_dict = {}
         
+        for i in range(len(new_groups)):
+            group_dict[i] = (new_groups[i], self.calculate_means(new_groups[i]))
+             
+        print(group_dict)
+                    
         
+
 
 
 
@@ -145,5 +150,5 @@ class Sorter:
         
     
 test = Sorter()
-result = test.build_groups(test.data["G-10"])
+result = test.build_groups(test.data["G-1"])
 
