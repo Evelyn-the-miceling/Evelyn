@@ -5,7 +5,11 @@ class Sorter:
     def __init__(self):
         self.path = os.path.join(os.getcwd(), "lib", "records.csv")
         self.data = {}
+        
+        #Storage
+        self.group_dict = {}
         self.extract_to_dict()
+        
         
         
     def extract_to_dict(self):
@@ -69,7 +73,7 @@ class Sorter:
 
             current_ratio = current_females/(i+1)
 
-        #Snake method cool idea
+        #Snake method cool idea, sort pass 1
         presets = []
         for i in range(5):
             if i % 2 == 0:
@@ -89,19 +93,83 @@ class Sorter:
 
         group_dict = {}
         
+        #Code to build a dictionary storing the people
         for i in range(len(new_groups)):
-            group_dict[i] = (new_groups[i], self.calculate_means(new_groups[i]))
-             
-        print(group_dict)
-                    
-        
-
-
-
-
-
-
+            group_dict[i] = [new_groups[i], self.calculate_means(new_groups[i])]
             
+        before_swap = group_dict
+             
+        #Code for swapping schools assuming they repeat
+        for main_number in range(len(group_dict.values())):
+            group = group_dict[main_number]
+            replacements = []
+            if group[1][2] > 2:
+                #Identify 3 repeated schools:
+                r_school = max(group[1][3])
+                
+                #Identify student to replace, populate with index, gender and GPA
+                r_students = []
+                for member_position in range(5):
+                    r_student = group[0][member_position]
+                    if r_student[2] == r_school:
+                        #Append position, gender and gpa
+                        r_students.append([member_position, r_student[4], float(r_student[5])])
+                for i in range(10):
+                    if group_dict[i][1][2] <3 and max(group_dict[i][1][3]) != r_school:
+                        replacements.append(i)
+                
+                #Tuple of person to swap with other person. First is OG, second is swapped.
+                #Default 5 as it is the widest range, hence impossible triggering the first new closest_gpa.
+                suitable_pair = []
+                closest_gpa = 5
+                for group_number in replacements: 
+                    for position in range(5):
+                        substitute = group_dict[group_number][0][position]
+                        #Screen replacemnets, ensure they are not from same school
+                        if substitute[3] == r_school:
+                            pass
+                        gender = substitute[4]
+                        gpa = float(substitute[5])
+                        for original in r_students:
+                            #Screen gender, ensuring same gender
+                            if original[1] != gender:
+                                pass
+                            temp_closest_gpa = abs(gpa-original[2])
+                            #Screen closest GPA, so that the result is not affected too much.
+                            if temp_closest_gpa < closest_gpa:
+                                closest_gpa = temp_closest_gpa
+                                suitable_pair = [(main_number, original[0]), (group_number, position)]
+
+                #Swap members into their new groups
+                print(suitable_pair)
+                if suitable_pair:
+                    og_grp = suitable_pair[0][0]
+                    og_pos = suitable_pair[0][1]
+                    swp_grp = suitable_pair[1][0]
+                    swp_pos = suitable_pair[1][1]
+                    group_dict[og_grp][0][og_pos], group_dict[swp_grp][0][swp_pos] = group_dict[swp_grp][0][swp_pos],group_dict[og_grp][0][og_pos]
+                    
+        #Update new means
+        for i in range(10):
+            group_dict[i][1] = self.calculate_means(group_dict[i][0])
+            
+        self.group_dict = group_dict
+        
+        for group in range(10):
+            group = before_swap[group]
+            
+        for group in range(10):
+            print(self.group_dict[group][1])
+                        
+                        
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
 
  
         return 
@@ -143,7 +211,8 @@ class Sorter:
         max_repeat = max(schools.values())
 
 
-        return gpa_mean, female_ratio, max_repeat
+        return [gpa_mean, female_ratio, max_repeat, schools]
+    
 
 
 
