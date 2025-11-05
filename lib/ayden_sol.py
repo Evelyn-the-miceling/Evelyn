@@ -1,5 +1,6 @@
 import csv
 import os
+import copy
 
 class Sorter:
     def __init__(self):
@@ -94,12 +95,13 @@ class Sorter:
         group_dict = {}
         
         #Code to build a dictionary storing the people
+        
         for i in range(len(new_groups)):
             group_dict[i] = [new_groups[i], self.calculate_means(new_groups[i])]
             
-        #Copy dict for reference when debugging. 
-        before_swap = group_dict.copy()
-        
+        #Copy dict for reference when debugging. Use deepcopy method from copy library.
+        before_swap = copy.deepcopy(group_dict)
+                
              
         #Code for swapping schools assuming they repeat
         for main_number in range(len(group_dict.values())):
@@ -199,8 +201,9 @@ class Sorter:
         female_ratio = total_female / len(group)
         max_repeat = max(schools.values())
 
+        #Round the GPA to make it more readable.
 
-        return [gpa_mean, female_ratio, max_repeat, schools]
+        return [round(gpa_mean, 3), female_ratio, max_repeat, schools]
     
 
     def display_sorted_tut(self, unsorted, sorted):
