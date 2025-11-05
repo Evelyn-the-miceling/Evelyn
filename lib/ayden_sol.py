@@ -97,7 +97,9 @@ class Sorter:
         for i in range(len(new_groups)):
             group_dict[i] = [new_groups[i], self.calculate_means(new_groups[i])]
             
-        before_swap = group_dict
+        #Copy dict for reference when debugging. 
+        before_swap = group_dict.copy()
+        
              
         #Code for swapping schools assuming they repeat
         for main_number in range(len(group_dict.values())):
@@ -105,7 +107,7 @@ class Sorter:
             replacements = []
             if group[1][2] > 2:
                 #Identify 3 repeated schools:
-                r_school = max(group[1][3])
+                r_school = max(group[1][3], key = group[1][3].get)
                 
                 #Identify student to replace, populate with index, gender and GPA
                 r_students = []
@@ -113,9 +115,10 @@ class Sorter:
                     r_student = group[0][member_position]
                     if r_student[2] == r_school:
                         #Append position, gender and gpa
+
                         r_students.append([member_position, r_student[4], float(r_student[5])])
                 for i in range(10):
-                    if group_dict[i][1][2] <3 and max(group_dict[i][1][3]) != r_school:
+                    if group_dict[i][1][2] <3 and max(group_dict[i][1][3], key = group_dict[i][1][3].get) != r_school:
                         replacements.append(i)
                 
                 #Tuple of person to swap with other person. First is OG, second is swapped.
@@ -125,9 +128,10 @@ class Sorter:
                 for group_number in replacements: 
                     for position in range(5):
                         substitute = group_dict[group_number][0][position]
-                        #Screen replacemnets, ensure they are not from same school
-                        if substitute[3] == r_school:
-                            pass
+                        #Screen replacemnets, ensure they are not from same school, continue if same school
+                        if substitute[2] == r_school:
+                            print("Mouse")
+                            continue
                         gender = substitute[4]
                         gpa = float(substitute[5])
                         for original in r_students:
@@ -139,39 +143,24 @@ class Sorter:
                             if temp_closest_gpa < closest_gpa:
                                 closest_gpa = temp_closest_gpa
                                 suitable_pair = [(main_number, original[0]), (group_number, position)]
-
                 #Swap members into their new groups
-                print(suitable_pair)
                 if suitable_pair:
+                    print("swapped")
+                    print(suitable_pair)
                     og_grp = suitable_pair[0][0]
                     og_pos = suitable_pair[0][1]
                     swp_grp = suitable_pair[1][0]
                     swp_pos = suitable_pair[1][1]
+                    print(group_dict[og_grp][0][og_pos], group_dict[swp_grp][0][swp_pos])
                     group_dict[og_grp][0][og_pos], group_dict[swp_grp][0][swp_pos] = group_dict[swp_grp][0][swp_pos],group_dict[og_grp][0][og_pos]
-                    
+                    print(group_dict[og_grp][0][og_pos], group_dict[swp_grp][0][swp_pos])
+
         #Update new means
         for i in range(10):
             group_dict[i][1] = self.calculate_means(group_dict[i][0])
             
         self.group_dict = group_dict
-        
-        for group in range(10):
-            group = before_swap[group]
-            
-        for group in range(10):
-            print(self.group_dict[group][1])
-                        
-                        
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                
-
- 
+        self.display_sorted_tut(before_swap, self.group_dict)
         return 
         
     #Toolset
@@ -214,10 +203,30 @@ class Sorter:
         return [gpa_mean, female_ratio, max_repeat, schools]
     
 
-
-
+    def display_sorted_tut(self, unsorted, sorted):
+        text = f"Without school swapping:\n"
+        print(text)
+        for i in range(10):
+            group = unsorted[i][0]
+            data = unsorted[i][1]
+            print(f"Group: {i+1}, Group Data: {data[:4]}\n")
+            for person in group:
+                print(person)
+            print("\n")
+            
+            
+        text_2 = f"With school swapping: \n__________________________" 
+        print(text_2)
+        for i in range(10):
+            group = sorted[i][0]
+            data = sorted[i][1]
+            print(f"Group: {i+1}, Group Data: {data[:4]}\n")
+            for person in group:
+                print(person)
+            
+            print("\n")
         
     
 test = Sorter()
-result = test.build_groups(test.data["G-1"])
+result = test.build_groups(test.data["G-10"])
 
