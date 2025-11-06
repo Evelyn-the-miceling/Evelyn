@@ -50,12 +50,14 @@ class Sorter:
         
         males = self.qs(males)
         females = self.qs(females)
-        
+                
         update_list = []
 
+        #Current ratio (fraction) of females to males of the update_list.
         current_ratio = 0
         current_females = 0
-
+        
+ 
         for i in range(50):
             if current_ratio < female_ratio:
                 if females:
@@ -75,53 +77,144 @@ class Sorter:
             current_ratio = current_females/(i+1)
 
         #Snake method cool idea, sort pass 1
+        
+        # [4, 5, 6, 3, 7, 8, 9, 2, 10, 11, 12, 1]
+        
+        # [4,  5,  6,  3]
+        # [2,  9,  8,  7]
+        # [10, 11, 12, 1]
+        
+        # #Snake method
+        # grp_1 = 16
+        # grp_2 = 25
+        # grp_3 = 26
+        # grp_4 = 11
+        
+        # #Snake method failed
+        # grp_1 = 21
+        # grp_2 = 24
+        # grp_3 = 27
+        # grp_4 = 6
+        
+        
+        # #Sizhu method
+        # grp_1 = 15
+        # grp_2 = 18
+        # grp_3 = 21
+        # grp_4 = 24
+        
+        # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+     
+        # [1, 2,  3,  4]
+        # [8, 7,  6,  5]
+        # [9, 10, 11, 12]
+        
+        #Index = 0
+        #[[1, 2, 3, 4], [8, 7, 6, 5], [9, 10, 11, 12]]
+        
+        #Inner loop, 0: 1
+        #Inner loop, 1: 8
+        #Inner loop, 2: 9
+        
+        #Index = 1
+        #Inner loop, 0:2
+        #...
+        
+        # #Snake method og
+        # grp_1 = 18
+        # grp_2 = 19
+        # grp_3 = 20
+        # grp_4 = 21
+        
+        # [4, 5, 6, 1, 7, 8, 9, 2, 10, 11, 12, 3]
+        
+        # [4,  5,  6,  1]
+        # [2,  9,  8,  7]
+        # [10, 11, 12, 3]
+        
+        # #Snake method realistic
+        # grp_1 = 16
+        # grp_2 = 25
+        # grp_3 = 26
+        # grp_4 = 11
+        
         presets = []
         for i in range(5):
             if i % 2 == 0:
                 presets.append(update_list[:10])
+                
                 update_list = update_list[10:]
+                
+                #OR use this: del(update_list[:10])
+                
             else:
+                #Invert for our snake method
                 presets.append(update_list[:10][::-1])
                 update_list = update_list[10:]
+                
+        #We have achieved 5 new groups, groups of 10. They are ordered in alternative inverse order.
 
         new_groups = []
         temp = []
+        #Now we have 5 groups, but we need 10 groups. Based on our method, we need to extract the first
+        #of each group, to form one group of 5. 
         for i in range(10):
-            for j in presets:
-                temp.append(j[i])
+            for person in presets:
+                #person_1 = ["tutorial_group", "student_id", "school"...]
+                #person_2 = ...
+                temp.append(person[i])
             new_groups.append(temp)
             temp = []
+            
+        #After this nested (double) loop, we get 10 groups that are sorted using the snake method!
 
         group_dict = {}
         
+            
         #Code to build a dictionary storing the people
-        
         for i in range(len(new_groups)):
             group_dict[i] = [new_groups[i], self.calculate_means(new_groups[i])]
             
+        # group_dict = {1:[["guy1", "guy2",...],["mean", ...]]}   
+        
         #Copy dict for reference when debugging. Use deepcopy method from copy library.
+        #This is so that we can compare before swapping schools and after swapping schools to see if it worked.
+        #We need to use deepcopy if not it will still reference the previous dictionary and the edit the before_swap.
         before_swap = copy.deepcopy(group_dict)
                 
              
-        #Code for swapping schools assuming they repeat
+        #Code for swapping schools assuming they repeat more than 2 times (3 times).
         for main_number in range(len(group_dict.values())):
+            
             group = group_dict[main_number]
+            #group = [[["grp", "id_1",...], ["grp", "id_2", ...],...],["mean", "female_ratio", "school_max", {"school1":2, "school2":3}]]
+            
             replacements = []
             if group[1][2] > 2:
                 #Identify 3 repeated schools:
+                #As such, r_school is the 
                 r_school = max(group[1][3], key = group[1][3].get)
                 
                 #Identify student to replace, populate with index, gender and GPA
                 r_students = []
                 for member_position in range(5):
                     r_student = group[0][member_position]
+                    #r_student = ["tut_grp", "id", ...]
+            
                     if r_student[2] == r_school:
-                        #Append position, gender and gpa
+                        #Append position, gender and gpa to the list, r_students
+                        #r_students = [["1", "Male", "4.33"], ...]
 
                         r_students.append([member_position, r_student[4], float(r_student[5])])
                 for i in range(10):
                     if group_dict[i][1][2] <3 and max(group_dict[i][1][3], key = group_dict[i][1][3].get) != r_school:
                         replacements.append(i)
+                        
+                    #replacements = [0, 1, 2, ...]
+                        
+                    #group_dict[2] = [[["grp", "id_1", ...], [...], ...], ["mean",...]]
+                    #group_dict[2][1] = ["mean", "ratio", "max_school", ...]
+                    #group_dict[2][1][2] = "max_school" of the third group
                 
                 #Tuple of person to swap with other person. First is OG, second is swapped.
                 #Default 5 as it is the widest range, hence impossible triggering the first new closest_gpa.
@@ -187,6 +280,10 @@ class Sorter:
         max_repeat = 0
 
         schools = {}
+        
+        #ASCII Table for fun
+        #A = 65
+        #a = 97
 
         for student in group:
             total_gpa += float(student[5])
