@@ -1,5 +1,5 @@
 from step1_group_by_tut import *
-...... = readfile()
+gender_subgroup = readfile()
 
 person = ("G-1", "5002","CCDS", "Male", "4.02")
 people = [[person]]
@@ -15,7 +15,7 @@ def pop_one_stem_one_nonstem(gender_subgroup):
     team = []
 
     # We make a copy of the list for safe iteration
-    for i, student in enumerate(gender_subgroup[:]):
+    #for i, student in enumerate(gender_subgroup[:]):
         school = student["school"].strip()  # remove extra spaces if any
 
         # pick one from STEM if not already picked
@@ -31,3 +31,22 @@ def pop_one_stem_one_nonstem(gender_subgroup):
             break
 
     return team
+
+for i in gender_subgroup:
+        school = student["school"].strip()  # remove extra spaces if any
+
+        # pick one from STEM if not already picked
+        if school in stem and not any(s["school"].strip() in stem for s in team):
+            team.append(gender_subgroup.pop(i))
+        
+        # pick one from non-STEM if not already picked
+        elif school in non_stem and not any(s["school"].strip() in non_stem for s in team):
+            team.append(gender_subgroup.pop(i))
+        
+        # stop once we have one of each
+        if len(team) == 2:
+            break
+
+    return team
+
+print (pop_one_stem_one_nonstem(gender_subgroup))
