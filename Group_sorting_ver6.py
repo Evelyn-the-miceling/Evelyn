@@ -73,7 +73,7 @@ def readfile():
 #Code to only iterate through the FIRST tutorial group
 groups = readfile()
 
-thefirstgroup = groups["G-2"]
+thefirstgroup = groups["G-1"]
 number_of_students_in_group = len(thefirstgroup)
 #print(thefirstgroup)
 
@@ -225,5 +225,6 @@ all_subgroups = Groups_of_5(Male_Students_sorted, Female_Students_sorted, ratio_
 for team in all_subgroups:
     print(team)
     print("_______________________") """
+
 
 
