@@ -92,7 +92,6 @@ def SortbyCGPA(student_list, reverse_or_not):
 def Group_Sorting(groups):
     #Code to sort by CGPA of a group:
     Output_groups = {}
-
     #The output should be a dict with keys are the original groups and values are the lists of lists of allocated groups
 
     for tut_group_name, student_list in groups.items():
@@ -124,8 +123,14 @@ def Group_Sorting(groups):
 
         #____________________________________________________________________#
 
-        #Code to use our Groups_of_5 function:
+        #Code to use our Groups_of_5 and Swapping_students functions:
         subgroups = Groups_of_5(Male_Students_sorted, Female_Students_sorted, ratio_boy_girl)
+        subgroups = Swapping_students(subgroups)
+
+        #To mark the subgroups with its index:
+        for i, subgroup in enumerate(subgroups):
+            for students in subgroup:
+                students["subgroup"] = f"{students["tutorial_group"]}-T{i + 1}"
 
         Output_groups[tut_group_name] = subgroups
     
@@ -193,7 +198,6 @@ def Groups_of_5(Male_Students_sorted, Female_Students_sorted, ratio_boy_girl):
     
     elif ratio_boy_girl > 3/2:
     #Same as above, just swap "boys" with "girls" 
-    #Note: Both "elif" clauses only apply for the situation where there are 18 - 32 of boys - girls
         while len(Male_Students_sorted) >= 4 and len(Female_Students_sorted) >= 2 and group_counter < max_groups:
             if group_counter < number_of_female - 10:
                 team = [
@@ -227,32 +231,162 @@ def Groups_of_5(Male_Students_sorted, Female_Students_sorted, ratio_boy_girl):
         if len(all_subgroups[i]) == 4: #To ensure that subgroups are addable
             all_subgroups[i].append(Unsorted_Students_sorted.pop(0))
 
-    #To handle anyone remaining in the unsorted students by putting them into a group
+    #To handle anyone remaining in the unsorted students by putting them into a group. This should be empty
     if Unsorted_Students_sorted:
         remaining_groups = [remaining_students for remaining_students in Unsorted_Students_sorted]
         all_subgroups.append(remaining_groups)
 
-    #To mark the subgroups with its index:
-    for i, subgroup in enumerate(all_subgroups):
-        for students in subgroup:
-            students["subgroup"] = f"{students["tutorial_group"]}-T{i + 1}"
-
     return all_subgroups
+
+#____________________________________________________________________#
+
+#Code to enhance school diversity:
+
+# Before assigning each tutorial group with a key, we will re-arrange the students to enhance school diversity
+# without altering too much the gender and CGPA dynamics that we made when we put everyone into groups
+# To alter, we will modify this lists of lists we made after calling the Groups_of_5 function directly
+# [[Tutgroup 1 - Group 1 members], [Tutgroup 1 - Group 2 members], ...]
+# The way to go is:
+# 1. Find out a group (call this group "undesired_group" that has 2+ people of the same school)
+# 2. Find the type of schools inside that group
+# 3. Create a list that contains all the "undesired_group" 
+# 4. Find a student that has school similarity in the "undesired_group". We call this student "undesired_student"
+# 5. Find a different group (call this group "swapper_group") does not have the same school types as the "undesired_student"
+# 6. Find a student that has school similarity in the "undesired_group". We call this student "undesired_student"
+# 7. Swap. Note that steps 2-5 we should have also found the indices of the students and the groups we wish to swap
+# 8. And continue until either we have successfully swapped everything (maximise school diversity), or we cannot swap anymore.
+# ! The "we cannot swap anymore" in 8. happens when the number of students with the same school is larger than the number of groups.
+# ! If that happens, we must concede again and have to accept a few groups that are not school-diverse enough.
+
+def Check_School_types_in_subgroup(a_list):
+    #Function to count number of school types + number of students at what school
+    Reps = {}
+    for students in a_list:
+        Reps[students["school"]] = 0
+    for students in a_list:
+        Reps[students["school"]] += 1
+    return Reps
+
+def Check_School_Diversity(a_list):
+    #Function to ensure the group has school diversity.
+    School_type = Check_School_types_in_subgroup(a_list)
+    for schools in School_type.keys():
+        if School_type[schools] > 1:
+            return False
+    else:
+        return True
+
+def Check_Repeating_School(a_list):
+    #Function to return the first type of school that repeats itself
+    School_type = Check_School_types_in_subgroup(a_list)
+    for schools in School_type.keys():
+        if School_type[schools] > 1:
+            return schools
+
+def Pick_out_the_student(a_list):
+    #Function to pick one student that is from a repeated school by their index in the list and themself
+    repeated_school = Check_Repeating_School(a_list)
+    for student_index, student in enumerate(a_list):
+        if student["school"] == repeated_school:
+            return (student_index, student)
+    else:
+        return False
+        
+def Group_swapper(list_of_lists, group_a, student_a, group_b, student_b):
+    #Function to swap students using their indices in the big list
+    list_of_lists[group_b][student_b], list_of_lists[group_a][student_a] = list_of_lists[group_a][student_a], list_of_lists[group_b][student_b]
+    return list_of_lists
+
+def CGPA_variance_check(student_a, student_b):
+    #Function to check for grade variance between the students
+    if abs(student_a["cgpa"] - student_b["cgpa"]) <= student_a["cgpa"] * 0.05:
+        return True
+    else:
+        return False
+
+def Swapping_students(list_of_lists):
+    #Function to keep swapping students until we have school diversity
+    while True:
+
+        undesired_group_index = -1
+        undesired_group = []
+
+        #Code to find the first undesired_group
+        for group_index in range(len(list_of_lists)):
+            if not Check_School_Diversity(list_of_lists[group_index]):
+                undesired_group_index = group_index
+                undesired_group = list_of_lists[group_index]
+                break
+        
+        #Code to get our student in the undesired group. 
+        if Pick_out_the_student(undesired_group) != False:
+            undesired_student_index, undesired_student = Pick_out_the_student(undesired_group)
+        else: # If there is no more undesired_groups, of course we cannot choose our student, so we break out of the while loop
+            break
+
+        #Code to get the school types in that undesired group
+        School_types_in_undesired_group = Check_School_types_in_subgroup(undesired_group)
+
+        # Code to find the indices of our swapper group and the student in the swapper group, as well as swap the students.
+        # We just need to find the first group and first student that satifies the criteria to swap.
+        # Basically, the criteria is the swapping student in the undesired group must have different schools to the students
+        # in the swapper group, and vice versa.
+        # This is to ensure that the loop does not run forever when meet cases like:
+        # undesired_group = [A, A, B, C, D]; swapper_group = [A, X, Y, Z, T] (Letters are examples for schools)
+        # When we swap A between 2 groups, the problem is still there since after swapping, there will still be 2 students 
+        # coming from the same school in one of the 2 groups.
+        # Moreover, the swapping student must have the same gender and CGPA difference of less
+        # than 5% compared to the undesired student to make sure that our list_of_lists's dynamics
+        # does not change much after swapping
+        
+        swapped_yet_or_not = False #Marker to check if we have made a swapping move or not
+        
+        for swapper_group_index in range(len(list_of_lists)):
+            if swapper_group_index == undesired_group_index:
+                continue
+
+            #Get the index and school types for the swapper_group
+            swapper_group = list_of_lists[swapper_group_index]
+            School_types_in_swapper_group = Check_School_types_in_subgroup(swapper_group)
+
+            for swapper_student_index in range(len(swapper_group)):
+                swapper_student = swapper_group[swapper_student_index]
+                
+                if undesired_student["school"] not in School_types_in_swapper_group.keys():
+                    #If the undesired student has different school to the swapper group
+                    
+                    if swapper_student["school"] not in School_types_in_undesired_group.keys(): 
+                        #If the swapper student has different school to the undesired group
+                        
+                        if swapper_student["gender"] == undesired_student["gender"] and CGPA_variance_check(undesired_student, swapper_student) == True:
+                            #If the swapper student has the same gender and CGPA around as the undesired student(5%)
+                                
+                            list_of_lists = Group_swapper(list_of_lists, undesired_group_index, undesired_student_index, swapper_group_index, swapper_student_index)
+                            #After satisfying all the conditions above, we swap students
+                            
+                            swapped_yet_or_not = True #Mark as having swapped the 2 students
+                            break #Get out of the small loop
+
+            if swapped_yet_or_not == True: #After swapping, of course get out of the big loop
+                break
+        
+        if swapped_yet_or_not == False: 
+            #In case when the number of students with the same school is larger than the number of groups
+            break
+    
+    return list_of_lists
 
 #____________________________________________________________________#
 
 #Code to write our output into a .csv file
 
 def WriteOutput(Output_groups, filename = "OutputFile.csv"):
-    header = ["Tutorial Group", "Student ID", "School", "Name", "Gender", "CGPA", "Subgroups"]
-
     try:
-        with open(filename, mode='w', encoding="utf-8") as file:
-
-            header_row = ",".join(header) + "\n"
+        with open(filename, mode='w') as file:
+            header_row = ",".join(["Tutorial Group", "Student ID", "School", "Name", "Gender", "CGPA", "Subgroups"]) + "\n"
             file.write(header_row)
             for tutgroup in Output_groups.values(): #Take out each tutorial group in output file
-                for allocated_groups in tutgroup: #Take out each allocated group
+                for allocated_groups in tutgroup: #Take out each allocated group in the tutorial group
                     for students in allocated_groups: #Take out each student in that particular allocated group
                         row_values =[
                                     students["tutorial_group"],
@@ -263,7 +397,7 @@ def WriteOutput(Output_groups, filename = "OutputFile.csv"):
                                     str(students["cgpa"]),
                                     students["subgroup"]
                                     ]
-                        data_row = ",".join(row_values) +"\n"
+                        data_row = ",".join(row_values) + "\n"
 
                         file.write(data_row)
     except:
@@ -276,15 +410,14 @@ groups = readfile()
 
 Output_groups = Group_Sorting(groups)
 
-WriteOutput(Output_groups)
+#WriteOutput(Output_groups)
 
-""" Output_group1 = Output_groups['G-1']
+Output_group1 = Output_groups['G-1']
 
-for name, groups in Output_groups.items():
+""" for name, groups in Output_groups.items():
     print(groups)
     print("________________________") """
 
-def test():
-    print(Output_groups)
-
-test()
+""" for group in Output_group1:
+    print(group)
+    print("________________________") """
