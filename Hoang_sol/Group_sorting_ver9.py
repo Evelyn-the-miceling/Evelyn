@@ -283,3 +283,8 @@ WriteOutput(Output_groups)
 for name, groups in Output_groups.items():
     print(groups)
     print("________________________") """
+
+def test():
+    print(Output_groups)
+
+test()

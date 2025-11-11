@@ -56,7 +56,8 @@ class Sorter:
         #Current ratio (fraction) of females to males of the update_list.
         current_ratio = 0
         current_females = 0
-        
+
+          
  
         for i in range(50):
             if current_ratio < female_ratio:
@@ -328,5 +329,5 @@ class Sorter:
         
     
 test = Sorter()
-result = test.build_groups(test.data["G-10"])
+result = test.build_groups(test.data["G-100"])
 
