@@ -249,7 +249,6 @@ def Groups_of_5(Male_Students_sorted, Female_Students_sorted, ratio_boy_girl):
 # The way to go is:
 # 1. Find out a group (call this group "undesired_group" that has 2+ people of the same school)
 # 2. Find the type of schools inside that group
-# 3. Create a list that contains all the "undesired_group" 
 # 4. Find a student that has school similarity in the "undesired_group". We call this student "undesired_student"
 # 5. Find a different group (call this group "swapper_group") does not have the same school types as the "undesired_student"
 # 6. Find a student that has school similarity in the "undesired_group". We call this student "undesired_student"
@@ -420,4 +419,5 @@ Output_group1 = Output_groups['G-1']
 
 """ for group in Output_group1:
     print(group)
+
     print("________________________") """
