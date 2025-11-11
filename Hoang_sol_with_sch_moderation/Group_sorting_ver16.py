@@ -251,7 +251,7 @@ def Groups_of_5(Male_Students_sorted, Female_Students_sorted, ratio_boy_girl):
 # 2. Find the type of schools inside that group
 # 4. Find a student that has school similarity in the "undesired_group". We call this student "undesired_student"
 # 5. Find a different group (call this group "swapper_group") does not have the same school types as the "undesired_student"
-# 6. Find a student that has school similarity in the "undesired_group". We call this student "undesired_student"
+# 6. Find a student that has school similarity in the "undesired_group". We call this student "swapper_student"
 # 7. Swap. Note that steps 2-5 we should have also found the indices of the students and the groups we wish to swap
 # 8. And continue until either we have successfully swapped everything (maximise school diversity), or we cannot swap anymore.
 # ! The "we cannot swap anymore" in 8. happens when the number of students with the same school is larger than the number of groups.
@@ -421,3 +421,4 @@ Output_group1 = Output_groups['G-1']
     print(group)
 
     print("________________________") """
+
