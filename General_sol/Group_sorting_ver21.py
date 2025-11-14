@@ -161,7 +161,7 @@ def Groups_of_n(student_list, n):
 
         elif ratio_boy_girl < (n - 1) / (n + 1):
             while len(Male_Students_sorted) >= n // 2 and len(Female_Students_sorted) >= n // 2 + 1 and group_counter < max_groups:
-                if group_counter < number_of_male + (3-n) / 2 * max_groups: # Fix this to fit with n
+                if group_counter < number_of_male + (3-n) / 2 * max_groups: 
                     team = []
                     for i in range(n // 2):
                         if i % 2 == 0:
@@ -171,7 +171,7 @@ def Groups_of_n(student_list, n):
                             team.append(Male_Students_sorted.pop()) #Male/Low CGPA
                             team.append(Female_Students_sorted.pop()) #Female/Low CGPA
 
-                elif group_counter >= number_of_male + (3-n) / 2 * max_groups: # Fix this to fit with n
+                elif group_counter >= number_of_male + (3-n) / 2 * max_groups: 
                     team = []
                     for i in range(n // 2 - 1):
                         if i % 2 == 0:
@@ -189,7 +189,7 @@ def Groups_of_n(student_list, n):
         
         elif ratio_boy_girl > (n + 1) / (n - 1):
             while len(Male_Students_sorted) >= n // 2 + 1 and len(Female_Students_sorted) >= n // 2 and group_counter < max_groups:
-                if group_counter < number_of_female + (3-n) / 2 * max_groups: # Fix this to fit with n
+                if group_counter < number_of_female + (3-n) / 2 * max_groups: 
                     team = []
                     for i in range(n // 2):
                         if i % 2 == 0:
@@ -199,7 +199,7 @@ def Groups_of_n(student_list, n):
                             team.append(Male_Students_sorted.pop()) #Male/Low CGPA
                             team.append(Female_Students_sorted.pop()) #Female/Low CGPA
 
-                elif group_counter >= number_of_female + (3-n) / 2 * max_groups: # Fix this to fit with n
+                elif group_counter >= number_of_female + (3-n) / 2 * max_groups: 
                     team = []
                     for i in range(n // 2 - 1):
                         if i % 2 == 0:
@@ -490,3 +490,4 @@ Output_group1 = Output_groups['G-1']
     print(group)
 
     print("________________________") """
+
