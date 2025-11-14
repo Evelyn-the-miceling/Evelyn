@@ -76,3 +76,16 @@ ENDWHILE
 RETURN list_of_lists
 
 END FUNCTION
+
+
+
+
+
+
+Pseudocode
+
+Function Check_School_types_in_subgroup(a_list):
+ Initialise a dictionary to store school counts
+ First loop: Identify all unique schools in the list
+             Initialise count = 0
+For EACH student IN a_list:
