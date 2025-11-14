@@ -1,0 +1,100 @@
+FUNCTION AfterAssigning_Swap(list_of_subgroups, cgpa_tolerance):
+    // Use a loop that keeps running as long as we can make fixes
+    WHILE True:
+        SET a_swap_was_made = False
+        
+        // --- PASS 1: FIX GENDER DIVERSITY ---
+        // (As suggested by your teammate N.X.H.)
+        
+        FOR each group 'A' in list_of_subgroups:
+            IF Check_Gender_Majority(group 'A') is True: // e.g., 4 or 5 of one gender
+                // This is an "undesired_group"
+                // Find a student from the majority gender to swap out
+                SET 'student_A' = a student from the majority gender in group 'A'
+                
+                // Now find a "swapper_student" from another group
+                FOR each group 'B' in list_of_subgroups:
+                    IF group 'A' is NOT group 'B':
+                        FOR 'student_B' in group 'B':
+                            // Check if student_B is the opposite gender
+                            IF 'student_B'.gender is NOT 'student_A'.gender:
+                                // Check if the swap is beneficial and safe
+                                IF Can_Safely_Swap(student_A, group_A, student_B, group_B, cgpa_tolerance):
+                                    // Perform the swap
+                                    Swap student_A and student_B
+                                    SET a_swap_was_made = True
+                                    BREAK from all inner loops (to restart the main WHILE loop)
+                        
+                        IF a_swap_was_made:
+                            BREAK
+            
+            IF a_swap_was_made:
+                BREAK
+
+        // If we made a gender swap, restart the main WHILE loop
+        // This ensures we always fix gender problems first
+        IF a_swap_was_made:
+            CONTINUE // (Goes to the next iteration of the WHILE True loop)
+            
+        // --- PASS 2: FIX SCHOOL DIVERSITY ---
+        // (This is your original Swapping_students logic)
+        
+        FOR each group 'A' in list_of_subgroups:
+            IF Check_School_Majority(group 'A') is True: // e.g., 3+ from one school
+                // This is an "undesired_group"
+                SET 'student_A' = a student from the majority school in group 'A'
+                
+                FOR each group 'B' in list_of_subgroups:
+                    IF group 'A' is NOT group 'B':
+                        FOR 'student_B' in group 'B':
+                            // Check criteria from your original code:
+                            IF 'student_A'.school is NOT in group 'B'.schools:
+                            AND 'student_B'.school is NOT in group 'A'.schools:
+                            AND 'student_A'.gender == 'student_B'.gender: // Preserve gender balance
+                            AND CGPA_Variance_Check(student_A, student_B, cgpa_tolerance):
+                            
+                                // Perform the swap
+                                Swap student_A and student_B
+                                SET a_swap_was_made = True
+                                BREAK from all inner loops (to restart the WHILE loop)
+                        
+                        IF a_swap_was_made:
+                            BREAK
+            
+            IF a_swap_was_made:
+                BREAK
+
+        // If we went through all groups and made NO swaps (for gender or school),
+        // it means we are done and cannot optimize further.
+        IF a_swap_was_made == False:
+            BREAK // (Exit the main WHILE True loop)
+            
+    RETURN list_of_subgroups
+
+// --- Helper Function for Pass 1 ---
+FUNCTION Can_Safely_Swap(student_A, group_A, student_B, group_B, tolerance):
+    // 1. Check CGPA
+    IF NOT CGPA_Variance_Check(student_A, student_B, tolerance):
+        RETURN False
+        
+    // 2. Check if swap makes group 'A' (the bad one) better
+    // (This is implicitly True since we are swapping for an opposite gender)
+    
+    // 3. Check if swap makes group 'B' (the good one) bad
+    // Check gender
+    Simulate swapping 'A' into group 'B'
+    IF Check_Gender_Majority(simulated_group_B) is True:
+        RETURN False // This swap would break group B's gender balance
+        
+    // Check school
+    Simulate swapping 'A' into group 'B'
+    IF Check_School_Majority(simulated_group_B) is True:
+        RETURN False // This swap would break group B's school balance
+
+    // 4. Check if swap makes group 'A' bad in a *new* way
+    Simulate swapping 'B' into group 'A'
+    IF Check_School_Majority(simulated_group_A) is True:
+        RETURN False // This swap would fix gender but break school
+        
+    // If all checks pass, it's a safe swap
+    RETURN True
