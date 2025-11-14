@@ -139,6 +139,14 @@ def Group_Sorting(groups):
 #____________________________________________________________________#
 
 #Code to assign students into groups of 5:
+def mean_cgpa(team):
+    total = 0
+    for s in team:
+        total += s["cgpa"]
+    return total / len(team)
+
+def SortSubgroupsByMeanCGPA(all_subgroups):
+    return sorted(all_subgroups, key=mean_cgpa)
 
 def Groups_of_5(Male_Students_sorted, Female_Students_sorted, ratio_boy_girl):
     all_subgroups = []
@@ -223,13 +231,15 @@ def Groups_of_5(Male_Students_sorted, Female_Students_sorted, ratio_boy_girl):
     #Group all remaining students into a list
     Unsorted_Students = Male_Students_sorted + Female_Students_sorted
     Unsorted_Students_sorted = SortbyCGPA(Unsorted_Students, True) #Sort the remaining student's CGPA from high to low
+
+    all_subgroups_sorted = SortSubgroupsByMeanCGPA(all_subgroups) #Sort teams' CGPA from low to high
     
-    num_of_4_people_groups = len(all_subgroups)
+    num_of_4_people_groups = len(all_subgroups_sorted)
     num_of_remaining_students = len(Unsorted_Students)
 
     for i in range(min(num_of_4_people_groups, num_of_remaining_students)): 
-        if len(all_subgroups[i]) == 4: #To ensure that subgroups are addable
-            all_subgroups[i].append(Unsorted_Students_sorted.pop(0))
+        if len(all_subgroups_sorted[i]) == 4: #To ensure that subgroups are addable
+            all_subgroups_sorted[i].append(Unsorted_Students_sorted.pop(0))
 
     #To handle anyone remaining in the unsorted students by putting them into a group. This should be empty
     if Unsorted_Students_sorted:
@@ -298,7 +308,7 @@ def Group_swapper(list_of_lists, group_a, student_a, group_b, student_b):
 
 def CGPA_variance_check(student_a, student_b):
     #Function to check for grade variance between the students
-    if abs(student_a["cgpa"] - student_b["cgpa"]) <= student_a["cgpa"] * 0.075:
+    if abs(student_a["cgpa"] - student_b["cgpa"]) <= student_a["cgpa"] * 0.05:
         return True
     else:
         return False
@@ -409,7 +419,7 @@ groups = readfile()
 
 Output_groups = Group_Sorting(groups)
 
-#WriteOutput(Output_groups)
+WriteOutput(Output_groups, "OutputFile.csv")
 
 Output_group1 = Output_groups['G-1']
 
@@ -421,4 +431,3 @@ Output_group1 = Output_groups['G-1']
     print(group)
 
     print("________________________") """
-
