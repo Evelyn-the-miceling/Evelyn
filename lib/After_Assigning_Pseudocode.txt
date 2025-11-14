@@ -1,0 +1,78 @@
+Pseudocode for Student Swapping (School Diversity)
+
+START FUNCTION Swapping_students(list_of_lists)
+
+SET list_of_lists = list_of_lists
+
+WHILE TRUE SET undesired_group_index = -1 SET undesired_group = []
+
+// Find the first group that lacks school diversity
+FOR `group_index` FROM 0 TO length(`list_of_lists`) - 1
+    IF `Check_School_Diversity`(`list_of_lists`[`group_index`]) IS `FALSE` THEN
+        SET `undesired_group_index` = `group_index`
+        SET `undesired_group` = `list_of_lists`[`group_index`]
+        BREAK // Exit FOR loop
+    ENDIF
+ENDFOR
+
+// Find a student from a repeated school in that group
+SET `student_to_swap` = `Pick_out_the_student`(`undesired_group`)
+
+// If no non-diverse group was found, or group is diverse, exit main loop
+IF `student_to_swap` IS `FALSE` THEN
+    BREAK // Exit WHILE TRUE loop
+ENDIF
+
+// Get the student's details and the group's school composition
+GET (`undesired_student_index`, `undesired_student`) FROM `student_to_swap`
+SET `undesired_group_schools` = `Check_School_types_in_subgroup`(`undesired_group`)
+
+SET `swapped_yet_or_not` = `FALSE`
+
+// Find a valid student to swap with
+FOR `swapper_group_index` FROM 0 TO length(`list_of_lists`) - 1
+    // Don't swap a group with itself
+    IF `swapper_group_index` IS EQUAL TO `undesired_group_index` THEN
+        CONTINUE // Skip this iteration
+    ENDIF
+
+    SET `swapper_group` = `list_of_lists`[`swapper_group_index`]
+    SET `swapper_group_schools` = `Check_School_types_in_subgroup`(`swapper_group`)
+
+    // Check every student in the potential swapper group
+    FOR `swapper_student_index` FROM 0 TO length(`swapper_group`) - 1
+        SET `swapper_student` = `swapper_group`[`swapper_student_index`]
+
+        // Condition 1: Undesired student's school is not already in the swapper group
+        IF `undesired_student`["school"] IS NOT IN `swapper_group_schools` THEN
+
+            // Condition 2: Swapper student's school is not already in the undesired group
+            IF `swapper_student`["school"] IS NOT IN `undesired_group_schools` THEN
+
+                // Condition 3: Gender matches and CGPA is similar
+                IF `swapper_student`["gender"] IS EQUAL TO `undesired_student`["gender"] AND `CGPA_variance_check`(`undesired_student`, `swapper_student`) IS `TRUE` THEN
+
+                    // All conditions met, perform the swap
+                    CALL `Group_swapper`(`list_of_lists`, `undesired_group_index`, `undesired_student_index`, `swapper_group_index`, `swapper_student_index`)
+                    SET `swapped_yet_or_not` = `TRUE`
+                    BREAK // Exit inner student FOR loop
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDFOR
+
+    // If a swap was made, break from the outer group loop to restart the process
+    IF `swapped_yet_or_not` IS `TRUE` THEN
+        BREAK // Exit outer group FOR loop
+    ENDIF
+ENDFOR
+
+// If no swap was possible for this `undesired_group`, stop the entire process
+IF `swapped_yet_or_not` IS `FALSE` THEN
+    BREAK // Exit main WHILE TRUE loop
+ENDIF
+ENDWHILE
+
+RETURN list_of_lists
+
+END FUNCTION
