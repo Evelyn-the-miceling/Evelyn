@@ -299,7 +299,7 @@ def Group_swapper(list_of_lists, group_a, student_a, group_b, student_b):
 
 def CGPA_variance_check(student_a, student_b):
     #Function to check for grade variance between the students
-    if abs(student_a["cgpa"] - student_b["cgpa"]) <= student_a["cgpa"] * 0.05:
+    if abs(student_a["cgpa"] - student_b["cgpa"]) <= student_a["cgpa"] * 0.075:
         return True
     else:
         return False
