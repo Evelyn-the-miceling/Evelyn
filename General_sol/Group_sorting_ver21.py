@@ -84,10 +84,9 @@ def Group_Sorting(groups):
     #Code to sort by CGPA of a group:
     Output_groups = {}
     #The output should be a dict with keys are the original groups and values are the lists of lists of allocated groups
-
     for tut_group_name, student_list in groups.items():
         #Code to use our Groups_of_5 and Swapping_students functions:
-        subgroups = Groups_of_5(student_list)
+        subgroups = Groups_of_n(student_list, n)
         subgroups = Swapping_students(subgroups)
 
         #To mark the subgroups with its index:
@@ -111,7 +110,7 @@ def mean_cgpa(team):
 def SortSubgroupsByMeanCGPA(all_subgroups):
     return sorted(all_subgroups, key=mean_cgpa)
 
-def Groups_of_5(student_list, n):
+def Groups_of_n(student_list, n):
     Leftovers = 50 % n
     Leftover_student_list = []
 
@@ -125,7 +124,7 @@ def Groups_of_5(student_list, n):
 
     number_of_male = len(Male_Students) # Number of boys in the group
     number_of_female = len(Female_Students) # Number of girls in the group
-    number_of_sorting_students = number_of_male + number_of_female
+    number_of_sorting_students = number_of_male + number_of_female # Number of students in this allocating round
 
     Male_Students_sorted = SortbyCGPA(Male_Students, True) # Sort by CGPA from high -> low
     Female_Students_sorted = SortbyCGPA(Female_Students,True) # Sort by CGPA from high -> low
@@ -146,22 +145,23 @@ def Groups_of_5(student_list, n):
     if n % 2 == 1: #Odđ membered group size
 
         if (n - 1) / (n + 1) <= ratio_boy_girl <= (n + 1) / (n - 1):
-        #Assign students into groups of 1 Male/High CGPA + 1 Male/Low CGPA + 1 Female/High CGPA + 1 Female/Low CGPA first. 
-            team = []
-            for i in range(n // 2):
-                if i % 2 == 0:
-                    team.append(Male_Students_sorted.pop(0)) #Male/High CGPA
-                    team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
-                else:
-                    team.append(Male_Students_sorted.pop()) #Male/Low CGPA
-                    team.append(Female_Students_sorted.pop()) #Female/Low CGPA
+        #Assign students into groups of 1 Male/High CGPA + 1 Male/Low CGPA + 1 Female/High CGPA + 1 Female/Low CGPA first.\
+            while group_counter < max_groups:
+                team = []
+                for i in range(n // 2):
+                    if i % 2 == 0:
+                        team.append(Male_Students_sorted.pop(0)) #Male/High CGPA
+                        team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
+                    else:
+                        team.append(Male_Students_sorted.pop()) #Male/Low CGPA
+                        team.append(Female_Students_sorted.pop()) #Female/Low CGPA
 
-            all_subgroups.append(team)
-            group_counter += 1
+                all_subgroups.append(team)
+                group_counter += 1
 
         elif ratio_boy_girl < (n - 1) / (n + 1):
             while len(Male_Students_sorted) >= n // 2 and len(Female_Students_sorted) >= n // 2 + 1 and group_counter < max_groups:
-                if group_counter < number_of_male - max_groups:
+                if group_counter < number_of_male + (3-n) / 2 * max_groups: # Fix this to fit with n
                     team = []
                     for i in range(n // 2):
                         if i % 2 == 0:
@@ -171,20 +171,25 @@ def Groups_of_5(student_list, n):
                             team.append(Male_Students_sorted.pop()) #Male/Low CGPA
                             team.append(Female_Students_sorted.pop()) #Female/Low CGPA
 
-                elif group_counter >= number_of_male - max_groups:
-                    team = [
-                            Male_Students_sorted.pop(0), #Male/High CGPA
-                            Female_Students_sorted.pop(), #Female/Low CGPA
-                            Female_Students_sorted.pop(0), #Female/High CGPA
-                            Female_Students_sorted.pop(), #Female/Low CGPA
-                            ]
+                elif group_counter >= number_of_male + (3-n) / 2 * max_groups: # Fix this to fit with n
+                    team = []
+                    for i in range(n // 2 - 1):
+                        if i % 2 == 0:
+                            team.append(Male_Students_sorted.pop(0)) #Male/High CGPA
+                            team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
+                        else:
+                            team.append(Male_Students_sorted.pop()) #Male/Low CGPA
+                            team.append(Female_Students_sorted.pop()) #Female/Low CGPA
 
+                    team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
+                    team.append(Female_Students_sorted.pop()) #Female/Low CGPA
+                    
                 all_subgroups.append(team)
                 group_counter += 1
         
         elif ratio_boy_girl > (n + 1) / (n - 1):
             while len(Male_Students_sorted) >= n // 2 + 1 and len(Female_Students_sorted) >= n // 2 and group_counter < max_groups:
-                if group_counter < number_of_female - 10:
+                if group_counter < number_of_female + (3-n) / 2 * max_groups: # Fix this to fit with n
                     team = []
                     for i in range(n // 2):
                         if i % 2 == 0:
@@ -194,13 +199,18 @@ def Groups_of_5(student_list, n):
                             team.append(Male_Students_sorted.pop()) #Male/Low CGPA
                             team.append(Female_Students_sorted.pop()) #Female/Low CGPA
 
-                elif group_counter >= number_of_female - 10:
-                    team = [
-                            Female_Students_sorted.pop(0), #Female/High CGPA
-                            Male_Students_sorted.pop(), #Male/Low CGPA
-                            Male_Students_sorted.pop(0), #Male/High CGPA
-                            Male_Students_sorted.pop(), #Male/Low CGPA
-                            ]
+                elif group_counter >= number_of_female + (3-n) / 2 * max_groups: # Fix this to fit with n
+                    team = []
+                    for i in range(n // 2 - 1):
+                        if i % 2 == 0:
+                            team.append(Male_Students_sorted.pop(0)) #Male/High CGPA
+                            team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
+                        else:
+                            team.append(Male_Students_sorted.pop()) #Male/Low CGPA
+                            team.append(Female_Students_sorted.pop()) #Female/Low CGPA
+
+                    team.append(Male_Students_sorted.pop(0)) #Female/High CGPA
+                    team.append(Male_Students_sorted.pop()) #Female/Low CGPA
 
                 all_subgroups.append(team)
                 group_counter += 1
@@ -223,24 +233,26 @@ def Groups_of_5(student_list, n):
             remaining_groups = [remaining_students for remaining_students in Unsorted_Students_sorted]
             all_subgroups.append(remaining_groups)
 
-    else:
-        if ratio_boy_girl == 1:
-        #Assign students into groups of 1 Male/High CGPA + 1 Male/Low CGPA + 1 Female/High CGPA + 1 Female/Low CGPA first. 
-            team = []
-            for i in range(n // 2):
-                if i % 2 == 0:
-                    team.append(Male_Students_sorted.pop(0)) #Male/High CGPA
-                    team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
-                else:
-                    team.append(Male_Students_sorted.pop()) #Male/Low CGPA
-                    team.append(Female_Students_sorted.pop()) #Female/Low CGPA
+    else: #Even membered group size
 
-            all_subgroups.append(team)
-            group_counter += 1
+        if ratio_boy_girl == 1:
+            while group_counter < max_groups:
+            #Assign students into groups of 1 Male/High CGPA + 1 Male/Low CGPA + 1 Female/High CGPA + 1 Female/Low CGPA first. 
+                team = []
+                for i in range(n // 2):
+                    if i % 2 == 0:
+                        team.append(Male_Students_sorted.pop(0)) #Male/High CGPA
+                        team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
+                    else:
+                        team.append(Male_Students_sorted.pop()) #Male/Low CGPA
+                        team.append(Female_Students_sorted.pop()) #Female/Low CGPA
+
+                all_subgroups.append(team)
+                group_counter += 1
         
         elif ratio_boy_girl < 1:
             while len(Male_Students_sorted) >= n // 2 and len(Female_Students_sorted) >= n // 2 + 1 and group_counter < max_groups:
-                if group_counter < number_of_male - max_groups:
+                if group_counter < number_of_male - number_of_sorting_students / 2 + max_groups:
                     team = []
                     for i in range(n // 2):
                         if i % 2 == 0:
@@ -250,20 +262,25 @@ def Groups_of_5(student_list, n):
                             team.append(Male_Students_sorted.pop()) #Male/Low CGPA
                             team.append(Female_Students_sorted.pop()) #Female/Low CGPA
 
-                elif group_counter >= number_of_male - max_groups:
-                    team = [
-                            Male_Students_sorted.pop(0), #Male/High CGPA
-                            Female_Students_sorted.pop(), #Female/Low CGPA
-                            Female_Students_sorted.pop(0), #Female/High CGPA
-                            Female_Students_sorted.pop(), #Female/Low CGPA
-                            ]
+                elif group_counter >= number_of_male - number_of_sorting_students / 2 + max_groups:
+                    team = []
+                    for i in range(n // 2 - 1):
+                        if i % 2 == 0:
+                            team.append(Male_Students_sorted.pop(0)) #Male/High CGPA
+                            team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
+                        else:
+                            team.append(Male_Students_sorted.pop()) #Male/Low CGPA
+                            team.append(Female_Students_sorted.pop()) #Female/Low CGPA
+
+                    team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
+                    team.append(Female_Students_sorted.pop()) #Female/Low CGPA
 
                 all_subgroups.append(team)
                 group_counter += 1
         
         elif ratio_boy_girl > 1:
             while len(Male_Students_sorted) >= n // 2 + 1 and len(Female_Students_sorted) >= n // 2 and group_counter < max_groups:
-                if group_counter < number_of_female - 10:
+                if group_counter < number_of_female - number_of_sorting_students / 2 + max_groups:
                     team = []
                     for i in range(n // 2):
                         if i % 2 == 0:
@@ -273,46 +290,38 @@ def Groups_of_5(student_list, n):
                             team.append(Male_Students_sorted.pop()) #Male/Low CGPA
                             team.append(Female_Students_sorted.pop()) #Female/Low CGPA
 
-                elif group_counter >= number_of_female - 10:
-                    team = [
-                            Female_Students_sorted.pop(0), #Female/High CGPA
-                            Male_Students_sorted.pop(), #Male/Low CGPA
-                            Male_Students_sorted.pop(0), #Male/High CGPA
-                            Male_Students_sorted.pop(), #Male/Low CGPA
-                            ]
+                elif group_counter >= number_of_female - number_of_sorting_students / 2 + max_groups:
+                    team = []
+                    for i in range(n // 2 - 1):
+                        if i % 2 == 0:
+                            team.append(Male_Students_sorted.pop(0)) #Male/High CGPA
+                            team.append(Female_Students_sorted.pop(0)) #Female/High CGPA
+                        else:
+                            team.append(Male_Students_sorted.pop()) #Male/Low CGPA
+                            team.append(Female_Students_sorted.pop()) #Female/Low CGPA
+
+                    team.append(Male_Students_sorted.pop(0)) #Female/High CGPA
+                    team.append(Male_Students_sorted.pop()) #Female/Low CGPA
 
                 all_subgroups.append(team)
                 group_counter += 1
-    
-
-        for i in range(Leftovers): 
-            all_subgroups_sorted[i].append(Unsorted_Students_sorted.pop(0))
 
         #To handle anyone remaining in the unsorted students by putting them into a group. This should be empty
+        Unsorted_Students = Male_Students_sorted + Female_Students_sorted
+        Unsorted_Students_sorted = SortbyCGPA(Unsorted_Students, True) #Sort the remaining student's CGPA from high to low
+
         if Unsorted_Students_sorted:
             remaining_groups = [remaining_students for remaining_students in Unsorted_Students_sorted]
             all_subgroups.append(remaining_groups)
+
+    for i in range(Leftovers): 
+        all_subgroups[i].append(Leftover_student_list.pop(0))
 
     return all_subgroups
 
 #____________________________________________________________________#
 
 #Code to enhance school diversity:
-
-# Before assigning each tutorial group with a key, we will re-arrange the students to enhance school diversity
-# without altering too much the gender and CGPA dynamics that we made when we put everyone into groups
-# To alter, we will modify this lists of lists we made after calling the Groups_of_5 function directly
-# [[Tutgroup 1 - Group 1 members], [Tutgroup 1 - Group 2 members], ...]
-# The way to go is:
-# 1. Find out a group (call this group "undesired_group" that has 2+ people of the same school)
-# 2. Find the type of schools inside that group
-# 4. Find a student that has school similarity in the "undesired_group". We call this student "undesired_student"
-# 5. Find a different group (call this group "swapper_group") does not have the same school types as the "undesired_student"
-# 6. Find a student that has school similarity in the "undesired_group". We call this student "swapper_student"
-# 7. Swap. Note that steps 2-5 we should have also found the indices of the students and the groups we wish to swap
-# 8. And continue until either we have successfully swapped everything (maximise school diversity), or we cannot swap anymore.
-# ! The "we cannot swap anymore" in 8. happens when the number of students with the same school is larger than the number of groups.
-# ! If that happens, we must concede again and have to accept a few groups that are not school-diverse enough.
 
 def Check_School_types_in_subgroup(a_list):
     #Function to count number of school types + number of students at what school
@@ -326,8 +335,9 @@ def Check_School_types_in_subgroup(a_list):
 def Check_School_Diversity(a_list):
     #Function to ensure the group has school diversity.
     School_type = Check_School_types_in_subgroup(a_list)
+    number_of_student = len(a_list)
     for schools in School_type.keys():
-        if School_type[schools] > 1:
+        if School_type[schools] > number_of_student // 3:
             return False
     else:
         return True
@@ -461,7 +471,9 @@ def WriteOutput(Output_groups, filename = "OutputFile.csv"): #Change the name in
 
 
 #Debugging function
-n = int(input("Select the number of members in a group: "))
+
+n = int(input("Select the number of members in a group (4-10): "))
+
 groups = readfile()
 
 Output_groups = Group_Sorting(groups)
