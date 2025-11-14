@@ -422,3 +422,305 @@ Output_group1 = Output_groups['G-1']
 
     print("________________________") """
 
+import csv
+import matplotlib.pyplot as plt
+import math # Only used for sqrt function in standard deviation
+
+# --- CONFIGURATION ---
+INPUT_FILE = 'OutputFile.csv'
+REQUIRED_TEAM_SIZE = 5
+
+# --- DATA STRUCTURES ---
+
+# Stores the full nested student data grouped by Tutorial Group and then Team
+# Structure: { 'G-1': { 'G-1-T1': [{data}, ...], ... }, ... }
+tut_groups_map = {}
+
+# Stores results for plotting and summarizing
+group_stats = {}
+
+# Stores the final counts for bar charts
+gender_ratio_counts = {'5:0': 0, '4:1': 0, '3:2': 0, '2:3': 0, '1:4': 0, '0:5': 0, 'Other': 0}
+school_diversity_counts = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0} # Key is number of unique schools
+
+# Stores the standard deviation distribution
+sd_distribution_counts = {}
+
+# Define the boundaries for the 0.01 interval bins (up to 0.15)
+SD_BINS = [round(i * 0.01, 2) for i in range(17)] # 0.00, 0.01, ..., 0.16
+
+# --- MANUAL STATISTICAL HELPER FUNCTIONS (NO NUMPY) ---
+
+def calculate_mean(data):
+    """Calculates the mean (average) of a list of numbers."""
+    if not data:
+        return 0.0
+    return sum(data) / len(data)
+
+def calculate_std_dev(data, mean_value):
+    """Calculates the population standard deviation of a list of numbers."""
+    N = len(data)
+    if N < 2:
+        return 0.0
+    
+    # Calculate sum of squared differences from the mean
+    sum_sq_diff = sum([(x - mean_value) ** 2 for x in data])
+    
+    # Population standard deviation formula: sqrt(sum_sq_diff / N)
+    variance = sum_sq_diff / N
+    
+    return math.sqrt(variance)
+
+def get_sd_bin(sd_value): #******change this part******
+    """Assigns the SD value to a 0.01 interval bin (e.g., 0.015 -> '0.01-0.02')."""
+    # Check if value is outside the defined range
+    if sd_value > 0.15:
+        return '>0.15'
+
+    # Iterate through the 0.01 bins
+    for i in range(len(SD_BINS) - 1):
+        lower_bound = SD_BINS[i]
+        upper_bound = SD_BINS[i+1]
+        
+        # We handle the lower bound (0.00-0.01) explicitly for 0.00 inclusion
+        if i == 0 and 0.0 <= sd_value <= 0.01:
+            return '0.00-0.01'
+        
+        # For all other bins, check if lower_bound < sd_value <= upper_bound
+        if lower_bound < sd_value <= upper_bound:
+            return f'{lower_bound:.2f}-{upper_bound:.2f}'
+    
+    return 'Other' # Fallback for unexpected values (should not happen)
+
+def initialize_sd_bins():
+    """Initializes the standard deviation counts dictionary based on SD_BINS."""
+    global sd_distribution_counts
+    for i in range(len(SD_BINS) - 1):
+        lower_bound = SD_BINS[i]
+        upper_bound = SD_BINS[i+1]
+        sd_distribution_counts[f'{lower_bound:.2f}-{upper_bound:.2f}'] = 0
+    # Add the final bin for values above the range
+    sd_distribution_counts['>0.15'] = 0
+#until here *****
+# --- CORE LOGIC: DATA LOADING AND GROUPING ---
+
+def load_and_group_data(file_path):
+    """Loads student data and groups it by Tutorial Group and then Team."""
+    print(f"--- Loading data from {file_path} ---")
+
+    try:
+        with open(file_path, mode='r', newline='', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            header = next(reader) # Skip header
+
+            # Map column names to indices
+            col_index = {
+                'Tutorial Group': header.index('Tutorial Group'),
+                'Gender': header.index('Gender'),
+                'CGPA': header.index('CGPA'),
+                'School': header.index('School'),
+                'Subgroups': header.index('Subgroups'),
+            }
+
+            for row in reader:
+                # Basic row validation
+                if len(row) <= max(col_index.values()): continue
+
+                tut_grp_name = row[col_index['Tutorial Group']]
+                team_name = row[col_index['Subgroups']]
+                cgpa_str = row[col_index['CGPA']]
+
+                try:
+                    cgpa = float(cgpa_str)
+                except ValueError:
+                    continue # Skip if CGPA is not a valid number
+
+                student_data = {
+                    'gender': row[col_index['Gender']],
+                    'school': row[col_index['School']],
+                    'cgpa': cgpa
+                }
+
+                # Populate the nested grouping map
+                if tut_grp_name not in tut_groups_map:
+                    tut_groups_map[tut_grp_name] = {}
+                if team_name not in tut_groups_map[tut_grp_name]:
+                    tut_groups_map[tut_grp_name][team_name] = []
+
+                tut_groups_map[tut_grp_name][team_name].append(student_data)
+
+            print(f"Data loaded and grouped into {len(tut_groups_map)} Tutorial Groups.")
+            return True
+
+    except Exception as e:
+        print(f"An error occurred during data loading: {e}")
+        return False
+
+# --- CORE LOGIC: DIVERSITY AND STATISTICAL ANALYSIS ---
+
+def analyze_diversity_and_stats():
+    """Performs all team-level and group-level statistical analysis."""
+
+    print("\n--- Analyzing Diversity and CGPA Standard Deviation ---")
+
+    all_group_sd_values = []
+
+    for tut_grp_name, teams_in_group in tut_groups_map.items():
+        
+        team_cgpa_means = []
+        
+        if tut_grp_name not in group_stats:
+             group_stats[tut_grp_name] = {
+                'team_cgpa_means': [],
+                'group_mean_cgpa': 0.0,
+                'sd_of_team_means': 0.0
+            }
+
+        # List to collect all CGPAs in the group for overall mean calculation
+        all_group_cgpas = []
+        
+        for team_name, students in teams_in_group.items():
+            team_size = len(students)
+            
+            # --- 1. Team CGPA Mean and Collection ---
+            team_cgpas = [s['cgpa'] for s in students]
+            team_mean_cgpa = calculate_mean(team_cgpas)
+            team_cgpa_means.append(team_mean_cgpa)
+            all_group_cgpas.extend(team_cgpas)
+
+            # --- 2. Gender Diversity Ratio Evaluation (Teams of 5) ---
+            if team_size == REQUIRED_TEAM_SIZE:
+                male_count = sum(1 for s in students if s['gender'] == 'Male')
+                female_count = team_size - male_count
+                ratio_key = f'{male_count}:{female_count}'
+                
+                if ratio_key in gender_ratio_counts:
+                    gender_ratio_counts[ratio_key] += 1
+                else:
+                    gender_ratio_counts['Other'] += 1
+            elif team_size != 0:
+                 gender_ratio_counts['Other'] += 1
+
+            # --- 3. School Diversity Evaluation ---
+            unique_schools = set(s['school'] for s in students)
+            num_unique_schools = len(unique_schools)
+            
+            if num_unique_schools in school_diversity_counts:
+                school_diversity_counts[num_unique_schools] += 1
+
+        # --- Group-Level CGPA Statistics (Step 3) ---
+        
+        # Calculate Group Mean CGPA (Mean of all students in the tutorial group)
+        group_mean_cgpa = calculate_mean(all_group_cgpas)
+        group_stats[tut_grp_name]['group_mean_cgpa'] = group_mean_cgpa
+
+        # Calculate Standard Deviation (SD) of Team Means within the group
+        # This checks the consistency of team quality within the tutorial group.
+        if len(team_cgpa_means) >= 2:
+            mean_of_team_means = calculate_mean(team_cgpa_means)
+            sd_of_means = calculate_std_dev(team_cgpa_means, mean_of_team_means)
+            group_stats[tut_grp_name]['sd_of_team_means'] = sd_of_means
+            all_group_sd_values.append(sd_of_means)
+        else:
+            group_stats[tut_grp_name]['sd_of_team_means'] = 0.0
+
+    # --- 4. Plot SD Distribution (Step 3 plotting) ---
+    initialize_sd_bins() # Ensure bins are ready
+    
+    for sd_val in all_group_sd_values:
+        bin_key = get_sd_bin(sd_val)
+        if bin_key in sd_distribution_counts:
+            sd_distribution_counts[bin_key] += 1
+    
+    print("\n--- CGPA Statistics Summary ---")
+    for group, data in group_stats.items():
+        print(f"Group {group}: Group Mean CGPA = {data['group_mean_cgpa']:.3f} | SD of Team Means = {data['sd_of_team_means']:.3f}")
+
+
+# --- VISUALIZATION FUNCTIONS ---
+
+def plot_gender_diversity(counts):
+    """Generates a bar chart showing the distribution of gender ratios."""
+    
+    # Filter out 'Other' for cleaner plotting if its count is 0
+    labels = [k for k in counts.keys() if counts[k] > 0 or k != 'Other']
+    data = [counts[k] for k in labels]
+    
+    if not labels or sum(data) == 0:
+        print("No gender ratio data to plot.")
+        return
+
+    plt.figure(figsize=(10, 6))
+    plt.bar(labels, data, color=['#3498db', '#5dade2', '#85c1e9', '#e74c3c', '#ec7063', '#f1948a', '#95a5a6'])
+    
+    plt.xlabel(f'Male:Female Ratio (Teams of {REQUIRED_TEAM_SIZE})', fontsize=12)
+    plt.ylabel('Number of Teams', fontsize=12)
+    plt.title(f'1. Gender Diversity (Male:Female Ratio) Across All Teams', fontsize=14, fontweight='bold')
+    plt.grid(axis='y', linestyle='--', alpha=0.6)
+    plt.tight_layout()
+    plt.show() # ADDED: Force plot display [Image of a bar chart illustrating gender distribution by ratio]
+
+
+def plot_school_diversity(counts):
+    """Generates a bar chart showing the distribution of unique school counts."""
+    
+    # Sort keys for consistent plotting order (5 down to 1)
+    # Filter for keys that have data and map to string labels
+    present_keys = sorted([k for k in counts.keys() if counts[k] > 0], reverse=True)
+    labels_str = [str(k) for k in present_keys]
+    data = [counts[k] for k in present_keys]
+
+    if sum(data) == 0:
+        print("No school diversity data to plot.")
+        return
+
+    plt.figure(figsize=(10, 6))
+    plt.bar(labels_str, data, color=['#2ecc71', '#27ae60', '#1abc9c', '#16a085', '#34495e'])
+    
+    plt.xlabel('Number of Unique Schools per Team', fontsize=12)
+    plt.ylabel('Number of Teams', fontsize=12)
+    plt.title('2. School Diversity Across All Teams', fontsize=14, fontweight='bold')
+    plt.grid(axis='y', linestyle='--', alpha=0.6)
+    plt.tight_layout()
+    plt.show() # ADDED: Force plot display 
+
+
+def plot_sd_distribution(counts):
+    """Generates a bar chart showing the frequency of Standard Deviation values in 0.01 bins."""
+    
+    # Ensure all bins are included, in sorted order
+    labels = sorted(counts.keys())
+    # Move '>0.15' to the end for logical display
+    if '>0.15' in labels:
+        labels.remove('>0.15')
+        labels.append('>0.15')
+        
+    data = [counts[k] for k in labels]
+
+    if sum(data) == 0:
+        print("No SD distribution data to plot (Need at least two teams per group).")
+        return
+    
+    plt.figure(figsize=(12, 6))
+    plt.bar(labels, data, color='#f39c12')
+    
+    plt.xlabel('Standard Deviation (SD) Range of Team Mean CGPAs (0.01 Intervals)', fontsize=12)
+    plt.ylabel('Number of Tutorial Groups', fontsize=12)
+    plt.title('3. Distribution of CGPA Consistency (SD of Team Means per Group)', fontsize=14, fontweight='bold')
+    plt.xticks(rotation=45, ha='right', fontsize=10)
+    plt.grid(axis='y', linestyle='--', alpha=0.6)
+    plt.tight_layout()
+    plt.show() # ADDED: Force plot display [Image of a bar chart illustrating the distribution of standard deviation values]
+
+# --- MAIN EXECUTION ---
+
+if __name__ == "__main__":
+    if load_and_group_data(INPUT_FILE):
+        
+        # Run the combined analysis
+        analyze_diversity_and_stats()
+        
+        # Generate the required charts
+        plot_gender_diversity(gender_ratio_counts)
+        plot_school_diversity(school_diversity_counts)
+        plot_sd_distribution(sd_distribution_counts)
