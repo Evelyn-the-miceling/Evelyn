@@ -1,0 +1,35 @@
+This part will read the file and convert each line into a dictionary. The return will be a dictionary with the key-value pair being the tut group no. and list with the dictionary that has the student's info inside that.
+
+1. Read file
+2. Convert each line into a dictionary
+3. Gather the dictionary from 2. into one big list
+4. Rearrange the list from 3. into a dictionary that satisfies all conditions
+
+-----------------------------------------------------------------------------------
+
+START
+
+OPEN file "record.csv"
+READ 1 line to skip header
+SET empty list called "students"
+
+FOR line in file
+	READ 1 line
+	CONVERT line into dictionary that contain student's information
+	APPEND dictionary into students
+ENDFOR
+
+SET empty dictionary called "groups"
+
+FOR stu in students
+	GET tutorial_group from stu
+	IF tutorial_group not in groups THEN
+		CREATE key: tutorial_group, value: []
+	ENDIF
+	APPEND stu into groups["tutorial_group"]
+ENDFOR
+
+RETURN groups
+
+END
+
