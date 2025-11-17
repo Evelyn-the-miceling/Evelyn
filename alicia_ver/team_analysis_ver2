@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import math # Only used for sqrt function in standard deviation
 
 # --- CONFIGURATION ---
-INPUT_FILE = 'team_allocations.csv'
+INPUT_FILE = 'OutputFile.csv'
 REQUIRED_TEAM_SIZE = 5
 
 # --- DATA STRUCTURES ---
@@ -47,7 +47,7 @@ def calculate_std_dev(data, mean_value):
     
     return math.sqrt(variance)
 
-def get_sd_bin(sd_value):
+def get_sd_bin(sd_value): #******change this part******
     """Assigns the SD value to a 0.01 interval bin (e.g., 0.015 -> '0.01-0.02')."""
     # Check if value is outside the defined range
     if sd_value > 0.15:
@@ -77,7 +77,7 @@ def initialize_sd_bins():
         sd_distribution_counts[f'{lower_bound:.2f}-{upper_bound:.2f}'] = 0
     # Add the final bin for values above the range
     sd_distribution_counts['>0.15'] = 0
-
+#until here *****
 # --- CORE LOGIC: DATA LOADING AND GROUPING ---
 
 def load_and_group_data(file_path):
@@ -95,7 +95,7 @@ def load_and_group_data(file_path):
                 'Gender': header.index('Gender'),
                 'CGPA': header.index('CGPA'),
                 'School': header.index('School'),
-                'Team Assigned': header.index('Team Assigned'),
+                'Subgroups': header.index('Subgroups'),
             }
 
             for row in reader:
@@ -103,7 +103,7 @@ def load_and_group_data(file_path):
                 if len(row) <= max(col_index.values()): continue
 
                 tut_grp_name = row[col_index['Tutorial Group']]
-                team_name = row[col_index['Team Assigned']]
+                team_name = row[col_index['Subgroups']]
                 cgpa_str = row[col_index['CGPA']]
 
                 try:
