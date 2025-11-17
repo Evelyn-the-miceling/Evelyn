@@ -519,7 +519,7 @@ def load_and_group_data(file_path):
                 'Gender': header.index('Gender'),
                 'CGPA': header.index('CGPA'),
                 'School': header.index('School'),
-                'Subgroups': header.index('subgroup'),
+                'Subgroups': header.index('Subgroups'),
             }
 
             for row in reader:
