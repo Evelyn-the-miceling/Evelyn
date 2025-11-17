@@ -471,7 +471,7 @@ def calculate_std_dev(data, mean_value):
     
     return math.sqrt(variance)
 
-def get_sd_bin(sd_value): #******change this part******
+def get_sd_bin(sd_value): 
     """Assigns the SD value to a 0.01 interval bin (e.g., 0.015 -> '0.01-0.02')."""
     # Check if value is outside the defined range
     if sd_value > 0.15:
@@ -501,7 +501,7 @@ def initialize_sd_bins():
         sd_distribution_counts[f'{lower_bound:.2f}-{upper_bound:.2f}'] = 0
     # Add the final bin for values above the range
     sd_distribution_counts['>0.15'] = 0
-#until here *****
+
 # --- CORE LOGIC: DATA LOADING AND GROUPING ---
 
 def load_and_group_data(file_path):
@@ -519,7 +519,7 @@ def load_and_group_data(file_path):
                 'Gender': header.index('Gender'),
                 'CGPA': header.index('CGPA'),
                 'School': header.index('School'),
-                'Subgroups': header.index('Subgroups'),
+                'Subgroups': header.index('subgroup'),
             }
 
             for row in reader:

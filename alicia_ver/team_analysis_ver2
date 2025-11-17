@@ -1,29 +1,18 @@
 import csv
 import matplotlib.pyplot as plt
-import math # Only used for sqrt function in standard deviation
+import math
 
 # --- CONFIGURATION ---
 INPUT_FILE = 'OutputFile.csv'
 REQUIRED_TEAM_SIZE = 5
 
 # --- DATA STRUCTURES ---
-
-# Stores the full nested student data grouped by Tutorial Group and then Team
-# Structure: { 'G-1': { 'G-1-T1': [{data}, ...], ... }, ... }
 tut_groups_map = {}
-
-# Stores results for plotting and summarizing
 group_stats = {}
-
-# Stores the final counts for bar charts
 gender_ratio_counts = {'5:0': 0, '4:1': 0, '3:2': 0, '2:3': 0, '1:4': 0, '0:5': 0, 'Other': 0}
-school_diversity_counts = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0} # Key is number of unique schools
-
-# Stores the standard deviation distribution
+school_diversity_counts = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0} 
 sd_distribution_counts = {}
-
-# Define the boundaries for the 0.01 interval bins (up to 0.15)
-SD_BINS = [round(i * 0.01, 2) for i in range(17)] # 0.00, 0.01, ..., 0.16
+SD_BINS = [round(i * 0.01, 2) for i in range(17)]
 
 # --- MANUAL STATISTICAL HELPER FUNCTIONS (NO NUMPY) ---
 
@@ -37,47 +26,50 @@ def calculate_std_dev(data, mean_value):
     """Calculates the population standard deviation of a list of numbers."""
     N = len(data)
     if N < 2:
-        return 0.0
+        return 0.0 
     
-    # Calculate sum of squared differences from the mean
     sum_sq_diff = sum([(x - mean_value) ** 2 for x in data])
-    
-    # Population standard deviation formula: sqrt(sum_sq_diff / N)
     variance = sum_sq_diff / N
     
     return math.sqrt(variance)
 
-def get_sd_bin(sd_value): #******change this part******
-    """Assigns the SD value to a 0.01 interval bin (e.g., 0.015 -> '0.01-0.02')."""
-    # Check if value is outside the defined range
+def get_sd_bin(sd_value): 
+    """
+    Assigns the SD value to a 0.01 interval bin.
+    (Cleaned: Removed redundant 'i == 0' check within the loop and simplified range logic)
+    """
+    
     if sd_value > 0.15:
         return '>0.15'
 
-    # Iterate through the 0.01 bins
     for i in range(len(SD_BINS) - 1):
         lower_bound = SD_BINS[i]
         upper_bound = SD_BINS[i+1]
         
-        # We handle the lower bound (0.00-0.01) explicitly for 0.00 inclusion
-        if i == 0 and 0.0 <= sd_value <= 0.01:
-            return '0.00-0.01'
+        # Redundancy fix: Use one consistent check. Since 0.00 is the first lower_bound, 
+        # checking lower_bound <= sd_value is correct for the first bin (0.00 to 0.01).
+        # We need to maintain the lower exclusive/upper inclusive logic for subsequent bins.
+        # Check if the value is strictly greater than the lower bound (unless it's 0)
         
-        # For all other bins, check if lower_bound < sd_value <= upper_bound
+        # If the value is exactly 0.00, it should be in the first bin.
+        if sd_value == 0.00:
+             return '0.00-0.01'
+        
+        # For all other values: check if it fits in the exclusive lower, inclusive upper range.
         if lower_bound < sd_value <= upper_bound:
-            return f'{lower_bound:.2f}-{upper_bound:.2f}'
-    
-    return 'Other' # Fallback for unexpected values (should not happen)
+             return f'{lower_bound:.2f}-{upper_bound:.2f}'
 
 def initialize_sd_bins():
     """Initializes the standard deviation counts dictionary based on SD_BINS."""
     global sd_distribution_counts
+    sd_distribution_counts = {}
+    
     for i in range(len(SD_BINS) - 1):
         lower_bound = SD_BINS[i]
         upper_bound = SD_BINS[i+1]
         sd_distribution_counts[f'{lower_bound:.2f}-{upper_bound:.2f}'] = 0
-    # Add the final bin for values above the range
     sd_distribution_counts['>0.15'] = 0
-#until here *****
+
 # --- CORE LOGIC: DATA LOADING AND GROUPING ---
 
 def load_and_group_data(file_path):
@@ -87,7 +79,7 @@ def load_and_group_data(file_path):
     try:
         with open(file_path, mode='r', newline='', encoding='utf-8') as file:
             reader = csv.reader(file)
-            header = next(reader) # Skip header
+            header = next(reader) 
 
             # Map column names to indices
             col_index = {
@@ -109,7 +101,7 @@ def load_and_group_data(file_path):
                 try:
                     cgpa = float(cgpa_str)
                 except ValueError:
-                    continue # Skip if CGPA is not a valid number
+                    continue
 
                 student_data = {
                     'gender': row[col_index['Gender']],
@@ -147,12 +139,11 @@ def analyze_diversity_and_stats():
         
         if tut_grp_name not in group_stats:
              group_stats[tut_grp_name] = {
-                'team_cgpa_means': [],
-                'group_mean_cgpa': 0.0,
-                'sd_of_team_means': 0.0
-            }
+                 'team_cgpa_means': [],
+                 'group_mean_cgpa': 0.0,
+                 'sd_of_team_means': 0.0
+             }
 
-        # List to collect all CGPAs in the group for overall mean calculation
         all_group_cgpas = []
         
         for team_name, students in teams_in_group.items():
@@ -166,17 +157,14 @@ def analyze_diversity_and_stats():
 
             # --- 2. Gender Diversity Ratio Evaluation (Teams of 5) ---
             if team_size == REQUIRED_TEAM_SIZE:
-                male_count = sum(1 for s in students if s['gender'] == 'Male')
+                male_count = sum(1 for s in students if s['gender'].strip().upper() == 'MALE') 
                 female_count = team_size - male_count
                 ratio_key = f'{male_count}:{female_count}'
                 
-                if ratio_key in gender_ratio_counts:
-                    gender_ratio_counts[ratio_key] += 1
-                else:
-                    gender_ratio_counts['Other'] += 1
-            elif team_size != 0:
-                 gender_ratio_counts['Other'] += 1
-
+                # Redundancy fix: Removed if ratio_key in gender_ratio_counts check.
+                # Since gender_ratio_counts is initialized with all valid keys, we can skip the check.
+                gender_ratio_counts[ratio_key] += 1
+            
             # --- 3. School Diversity Evaluation ---
             unique_schools = set(s['school'] for s in students)
             num_unique_schools = len(unique_schools)
@@ -186,27 +174,24 @@ def analyze_diversity_and_stats():
 
         # --- Group-Level CGPA Statistics (Step 3) ---
         
-        # Calculate Group Mean CGPA (Mean of all students in the tutorial group)
         group_mean_cgpa = calculate_mean(all_group_cgpas)
         group_stats[tut_grp_name]['group_mean_cgpa'] = group_mean_cgpa
 
         # Calculate Standard Deviation (SD) of Team Means within the group
-        # This checks the consistency of team quality within the tutorial group.
         if len(team_cgpa_means) >= 2:
             mean_of_team_means = calculate_mean(team_cgpa_means)
             sd_of_means = calculate_std_dev(team_cgpa_means, mean_of_team_means)
             group_stats[tut_grp_name]['sd_of_team_means'] = sd_of_means
             all_group_sd_values.append(sd_of_means)
-        else:
-            group_stats[tut_grp_name]['sd_of_team_means'] = 0.0
 
     # --- 4. Plot SD Distribution (Step 3 plotting) ---
-    initialize_sd_bins() # Ensure bins are ready
+    initialize_sd_bins() 
     
     for sd_val in all_group_sd_values:
         bin_key = get_sd_bin(sd_val)
-        if bin_key in sd_distribution_counts:
-            sd_distribution_counts[bin_key] += 1
+        # Redundancy fix: Removed if bin_key in sd_distribution_counts check.
+        # initialize_sd_bins() ensures all possible keys are present.
+        sd_distribution_counts[bin_key] += 1
     
     print("\n--- CGPA Statistics Summary ---")
     for group, data in group_stats.items():
@@ -218,14 +203,9 @@ def analyze_diversity_and_stats():
 def plot_gender_diversity(counts):
     """Generates a bar chart showing the distribution of gender ratios."""
     
-    # Filter out 'Other' for cleaner plotting if its count is 0
-    labels = [k for k in counts.keys() if counts[k] > 0 or k != 'Other']
+    labels = list(counts.keys()) 
     data = [counts[k] for k in labels]
     
-    if not labels or sum(data) == 0:
-        print("No gender ratio data to plot.")
-        return
-
     plt.figure(figsize=(10, 6))
     plt.bar(labels, data, color=['#3498db', '#5dade2', '#85c1e9', '#e74c3c', '#ec7063', '#f1948a', '#95a5a6'])
     
@@ -234,21 +214,17 @@ def plot_gender_diversity(counts):
     plt.title(f'1. Gender Diversity (Male:Female Ratio) Across All Teams', fontsize=14, fontweight='bold')
     plt.grid(axis='y', linestyle='--', alpha=0.6)
     plt.tight_layout()
-    plt.show() # ADDED: Force plot display [Image of a bar chart illustrating gender distribution by ratio]
+    plt.show() 
+
+
 
 
 def plot_school_diversity(counts):
     """Generates a bar chart showing the distribution of unique school counts."""
     
-    # Sort keys for consistent plotting order (5 down to 1)
-    # Filter for keys that have data and map to string labels
-    present_keys = sorted([k for k in counts.keys() if counts[k] > 0], reverse=True)
+    present_keys = sorted(counts.keys(), reverse=True)
     labels_str = [str(k) for k in present_keys]
     data = [counts[k] for k in present_keys]
-
-    if sum(data) == 0:
-        print("No school diversity data to plot.")
-        return
 
     plt.figure(figsize=(10, 6))
     plt.bar(labels_str, data, color=['#2ecc71', '#27ae60', '#1abc9c', '#16a085', '#34495e'])
@@ -258,24 +234,19 @@ def plot_school_diversity(counts):
     plt.title('2. School Diversity Across All Teams', fontsize=14, fontweight='bold')
     plt.grid(axis='y', linestyle='--', alpha=0.6)
     plt.tight_layout()
-    plt.show() # ADDED: Force plot display 
+    plt.show() 
 
 
 def plot_sd_distribution(counts):
     """Generates a bar chart showing the frequency of Standard Deviation values in 0.01 bins."""
     
-    # Ensure all bins are included, in sorted order
     labels = sorted(counts.keys())
-    # Move '>0.15' to the end for logical display
+    
     if '>0.15' in labels:
         labels.remove('>0.15')
         labels.append('>0.15')
         
     data = [counts[k] for k in labels]
-
-    if sum(data) == 0:
-        print("No SD distribution data to plot (Need at least two teams per group).")
-        return
     
     plt.figure(figsize=(12, 6))
     plt.bar(labels, data, color='#f39c12')
@@ -286,17 +257,18 @@ def plot_sd_distribution(counts):
     plt.xticks(rotation=45, ha='right', fontsize=10)
     plt.grid(axis='y', linestyle='--', alpha=0.6)
     plt.tight_layout()
-    plt.show() # ADDED: Force plot display [Image of a bar chart illustrating the distribution of standard deviation values]
+    plt.show() 
+
+
+
 
 # --- MAIN EXECUTION ---
 
 if __name__ == "__main__":
     if load_and_group_data(INPUT_FILE):
         
-        # Run the combined analysis
         analyze_diversity_and_stats()
         
-        # Generate the required charts
         plot_gender_diversity(gender_ratio_counts)
         plot_school_diversity(school_diversity_counts)
         plot_sd_distribution(sd_distribution_counts)
