@@ -1,0 +1,231 @@
+import csv
+import math
+import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider
+
+# --- CONFIGURATION ---
+INPUT_FILE = 'OutputFile.csv'
+INITIAL_TEAM_SIZE = 5
+
+# --- GLOBAL DATA STORAGE ---
+raw_data = []  # Load data once into memory
+
+# --- 1. LOAD DATA ---
+def load_data_into_memory(file_path):
+    data = []
+    print(f"--- Loading data from {file_path} ---")
+    try:
+        with open(file_path, mode='r', newline='', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            header = next(reader)
+            
+            # --- FIXED SECTION START ---
+            # Dynamically find the column name for teams
+            if 'Subgroups' in header:
+                team_col_name = 'Subgroups'
+            elif 'Team Assigned' in header:
+                team_col_name = 'Team Assigned'
+            else:
+                print(f"Error loading data: Required column 'Subgroups' or 'Team Assigned' not found in {header}")
+                return []
+            
+            # Map columns dynamically based on what we found
+            col_index = {
+                'Tutorial Group': header.index('Tutorial Group'),
+                'Gender': header.index('Gender'),
+                'CGPA': header.index('CGPA'),
+                'School': header.index('School'),
+                'Subgroups': header.index(team_col_name), # Uses whichever name was found
+            }
+            # --- FIXED SECTION END ---
+
+            for row in reader:
+                # Skip empty or incomplete rows
+                if len(row) <= max(col_index.values()): continue
+                
+                try:
+                    cgpa = float(row[col_index['CGPA']])
+                except ValueError:
+                    continue
+                    
+                data.append({
+                    'tut_group': row[col_index['Tutorial Group']],
+                    'team': row[col_index['Subgroups']],
+                    'gender': row[col_index['Gender']],
+                    'school': row[col_index['School']],
+                    'cgpa': cgpa
+                })
+            print(f"Loaded {len(data)} student records.")
+            return data
+    except Exception as e:
+        print(f"Error loading data: {e}")
+        return []
+
+# --- 2. HELPER MATH FUNCTIONS ---
+def calculate_mean(data):
+    if not data: return 0.0
+    return sum(data) / len(data)
+
+def calculate_std_dev(data, mean_value):
+    N = len(data)
+    if N < 2: return 0.0
+    sum_sq_diff = sum([(x - mean_value) ** 2 for x in data])
+    return math.sqrt(sum_sq_diff / N)
+
+# --- 3. ANALYSIS LOGIC (Re-runs when slider moves) ---
+def run_analysis(required_n, student_records):
+    # Data Structures
+    tut_groups_map = {}
+    
+    # Group by Tutorial -> Team
+    for s in student_records:
+        tg = s['tut_group']
+        tm = s['team']
+        if tg not in tut_groups_map: tut_groups_map[tg] = {}
+        if tm not in tut_groups_map[tg]: tut_groups_map[tg][tm] = []
+        tut_groups_map[tg][tm].append(s)
+
+    # 1. Gender Ratio Keys
+    gender_counts = {}
+    # Generate keys N:0 ... 0:N
+    keys = []
+    if required_n > 0:
+        # Logic from your original file for specific breakpoints
+        check_points = {required_n, round(required_n*0.75), round(required_n*0.5), round(required_n/3), round(required_n*0.25), 0}
+        for m in sorted(list(check_points), reverse=True):
+            if m <= required_n:
+                gender_counts[f"{m}:{required_n-m}"] = 0
+    gender_counts['Other'] = 0
+
+    # 2. School Diversity Keys
+    school_counts = {i: 0 for i in range(1, required_n + 1)}
+
+    # 3. SD Bins
+    sd_bins = [round(i * 0.01, 2) for i in range(17)]
+    sd_counts = {f'{sd_bins[i]:.2f}-{sd_bins[i+1]:.2f}': 0 for i in range(len(sd_bins)-1)}
+    sd_counts['>0.15'] = 0
+
+    # --- PROCESS TEAMS ---
+    for tg, teams in tut_groups_map.items():
+        team_means = []
+        
+        for tm, students in teams.items():
+            size = len(students)
+            
+            # Gender
+            if size == required_n:
+                m_count = sum(1 for s in students if s['gender'] == 'Male')
+                key = f"{m_count}:{size-m_count}"
+                if key in gender_counts: gender_counts[key] += 1
+                else: gender_counts['Other'] += 1
+            elif size > 0:
+                gender_counts['Other'] += 1
+            
+            # School
+            uniq_sch = len(set(s['school'] for s in students))
+            if 1 <= uniq_sch <= required_n:
+                school_counts[uniq_sch] += 1
+            
+            # CGPA for SD
+            cgpas = [s['cgpa'] for s in students]
+            team_means.append(calculate_mean(cgpas))
+
+        # Group SD
+        if len(team_means) >= 2:
+            grp_mean = calculate_mean(team_means)
+            sd = calculate_std_dev(team_means, grp_mean)
+            
+            # Binning
+            matched = False
+            if sd > 0.15:
+                sd_counts['>0.15'] += 1
+                matched = True
+            else:
+                for i in range(len(sd_bins) - 1):
+                    if sd_bins[i] < sd <= sd_bins[i+1]:
+                        sd_counts[f'{sd_bins[i]:.2f}-{sd_bins[i+1]:.2f}'] += 1
+                        matched = True
+                        break
+                # Handle 0.0 case
+                if not matched and 0.0 <= sd <= 0.01:
+                     sd_counts['0.00-0.01'] += 1
+
+    return gender_counts, school_counts, sd_counts
+
+# --- 4. PLOTTING (The Slider Logic) ---
+def main():
+    global raw_data
+    raw_data = load_data_into_memory(INPUT_FILE)
+    if not raw_data: return
+
+    # Create the Window (Figure) and 3 Subplots
+    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 12))
+    plt.subplots_adjust(left=0.1, bottom=0.15, right=0.95, top=0.95, hspace=0.4)
+
+    # --- CREATE SLIDER ---
+    # Position: [left, bottom, width, height]
+    ax_slider = plt.axes([0.25, 0.05, 0.5, 0.03], facecolor='lightgoldenrodyellow')
+    slider_n = Slider(
+        ax=ax_slider,
+        label='Required Team Size (N)',
+        valmin=2,
+        valmax=10,
+        valinit=INITIAL_TEAM_SIZE,
+        valstep=1
+    )
+
+    # --- UPDATE FUNCTION ---
+    def update(val):
+        N = int(slider_n.val)
+        
+        # 1. Re-run Analysis
+        g_counts, s_counts, sd_counts = run_analysis(N, raw_data)
+
+        # 2. Update Plot 1: Gender
+        ax1.clear()
+        labels_g = [k for k in g_counts.keys() if k != 'Other']
+        # Sort decending by male count
+        labels_g.sort(key=lambda x: int(x.split(':')[0]), reverse=True)
+        if 'Other' in g_counts: labels_g.append('Other')
+        vals_g = [g_counts[k] for k in labels_g]
+        
+        ax1.bar(labels_g, vals_g, color='#5dade2')
+        ax1.set_title(f"Gender Diversity (Target N={N})")
+        ax1.set_ylabel("Count")
+        ax1.grid(axis='y', linestyle='--')
+
+        # 3. Update Plot 2: School
+        ax2.clear()
+        labels_s = sorted([k for k,v in s_counts.items() if v > 0], reverse=True)
+        vals_s = [s_counts[k] for k in labels_s]
+        
+        ax2.bar([str(x) for x in labels_s], vals_s, color='#2ecc71')
+        ax2.set_title("School Diversity")
+        ax2.set_xlabel("Unique Schools per Team")
+        ax2.set_ylabel("Count")
+        ax2.grid(axis='y', linestyle='--')
+
+        # 4. Update Plot 3: SD
+        ax3.clear()
+        labels_sd = sorted(sd_counts.keys())
+        if '>0.15' in labels_sd:
+            labels_sd.remove('>0.15'); labels_sd.append('>0.15')
+        vals_sd = [sd_counts[k] for k in labels_sd]
+        
+        ax3.bar(labels_sd, vals_sd, color='#f39c12')
+        ax3.set_title("CGPA Consistency (SD of Team Means)")
+        ax3.set_xlabel("SD Range")
+        ax3.tick_params(axis='x', rotation=45)
+        ax3.grid(axis='y', linestyle='--')
+
+        # Redraw
+        fig.canvas.draw_idle()
+
+    # Initialize
+    slider_n.on_changed(update)
+    update(INITIAL_TEAM_SIZE) # Initial draw
+    
+    plt.show()
+
+if __name__ == "__main__":
+    main()
