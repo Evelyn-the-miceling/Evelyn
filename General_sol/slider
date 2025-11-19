@@ -85,16 +85,17 @@ def run_analysis(required_n, student_records):
         if tm not in tut_groups_map[tg]: tut_groups_map[tg][tm] = []
         tut_groups_map[tg][tm].append(s)
 
-    # 1. Gender Ratio Keys (show ALL ratios)
+ # 1. Gender Ratio Keys
     gender_counts = {}
-    
+    # Generate keys N:0 ... 0:N
+    keys = []
     if required_n > 0:
-        # loop from N down to 0
-        # Creates a bucket for every possible combo 
-        for m in range(required_n, -1, -1):
-            gender_counts[f"{m}:{required_n-m}"] = 0
-            
-    gender_counts['Other'] = 0 # Keep this only for teams with WRONG sizes (e.g. size 4 when N=5)
+        # Logic from your original file for specific breakpoints
+        check_points = {required_n, round(required_n*0.75), round(required_n*0.5), round(required_n/3), round(required_n*0.25), 0}
+        for m in sorted(list(check_points), reverse=True):
+            if m <= required_n:
+                gender_counts[f"{m}:{required_n-m}"] = 0
+    gender_counts['Other'] = 0
 
     # 2. School Diversity Keys
     school_counts = {i: 0 for i in range(1, required_n + 1)}

@@ -79,12 +79,16 @@ def run_analysis(required_n, student_records):
         if tm not in tut_groups_map[tg]: tut_groups_map[tg][tm] = []
         tut_groups_map[tg][tm].append(s)
 
-    # --- 1. PRE-FILL GENDER KEYS (Target N) ---
-    # We create 0-count entries for the target size (e.g. 9:0, 8:1...)
+    # --- 1. PRE-FILL GENDER KEYS (Strictly for Slider Value) ---
     gender_counts = {}
+    
+    # ONLY generate keys for the slider value (e.g., if N=4, generate 4:0, 3:1, 2:2, 1:3, 0:4)
     if required_n > 0:
         for m in range(required_n, -1, -1):
             gender_counts[f"{m}:{required_n-m}"] = 0
+            
+    # Note: We do NOT pre-fill sizes 10, 9, 8, etc. here. 
+    # They will only appear below if they actually exist in the CSV data.
     
     # School & SD Setup
     school_counts = {i: 0 for i in range(1, required_n + 1)}
@@ -100,16 +104,15 @@ def run_analysis(required_n, student_records):
             size = len(students)
             
             # --- GENDER LOGIC (Dynamic) ---
-            # Instead of forcing "Other", we simply ADD the actual ratio found
             m_count = sum(1 for s in students if s['gender'] == 'Male')
             f_count = size - m_count
             ratio_key = f"{m_count}:{f_count}"
             
+            # If key exists (it matched the slider), increment it.
+            # If key DOES NOT exist (e.g. data is Size 5 but slider is 4), add it dynamically!
             if ratio_key in gender_counts:
                 gender_counts[ratio_key] += 1
             else:
-                # If this ratio wasn't expected (e.g. size 5 when N=9), add it dynamically!
-                # This prevents it from being hidden in "Other"
                 gender_counts[ratio_key] = 1
 
             # School Logic
@@ -117,7 +120,7 @@ def run_analysis(required_n, student_records):
             if uniq_sch in school_counts:
                 school_counts[uniq_sch] += 1
             else:
-                school_counts[uniq_sch] = 1 # Dynamic handling
+                school_counts[uniq_sch] = 1 
             
             # CGPA Logic
             cgpas = [s['cgpa'] for s in students]
@@ -209,3 +212,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
