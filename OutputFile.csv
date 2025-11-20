@@ -1,5 +1,6 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Tutorial Group,Student ID,School,Name,Gender,CGPA,Team Assigned
 G-1,2091,EEE,Adlan Bin Rahman,Male,4.2,G-1-T1
 G-1,3861,ASE,Layla Torres,Female,4.52,G-1-T1
@@ -472,6 +473,16 @@ G-1,4520,EEE,Henry Foster,Male,4.11,G-1-T1
 G-1,5708,SoH,Ananya Ramesh,Male,4.2,G-1-T2
 G-1,1645,CoE,Zachary Wu,Male,3.93,G-1-T2
 >>>>>>> Stashed changes
+=======
+Tutorial Group,Student ID,School,Name,Gender,CGPA,Subgroups
+G-1,5477,SoH,Vikram Desai,Male,4.09,G-1-T1
+G-1,1329,NIE,Nguyen Van Sam,Male,3.85,G-1-T1
+G-1,3861,ASE,Layla Torres,Female,4.52,G-1-T1
+G-1,2417,SSS,Truong Minh Chau,Female,3.88,G-1-T1
+G-1,4520,EEE,Henry Foster,Male,4.11,G-1-T1
+G-1,5708,SoH,Ananya Ramesh,Male,4.2,G-1-T2
+G-1,1645,CoE,Zachary Wu,Male,3.93,G-1-T2
+>>>>>>> Stashed changes
 G-1,2069,SSS,Kathy Lau,Female,4.48,G-1-T2
 G-1,75,CCDS,Sakina Ahmed,Female,4.03,G-1-T2
 G-1,3838,EEE,Aarti Nair,Female,4.05,G-1-T2
@@ -516,6 +527,7 @@ G-1,3930,EEE,Xun Wei,Female,4.18,G-1-T10
 G-1,5119,ADM,Nhung Vu,Female,4.04,G-1-T10
 G-1,5703,SPMS,Karen Lee,Female,4.12,G-1-T10
 G-10,4077,SoH,Yasir Ahmad,Male,4.52,G-10-T1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-10,3903,CoE,Xiao Chen,Male,3.86,G-10-T1
@@ -5024,6 +5036,11 @@ G-10,3903,CoE,Xiao Chen,Male,3.86,G-10-T1
 G-10,403,SoH,Hae-Jin Lee,Female,4.52,G-10-T1
 G-10,2405,ASE,Soo-Young Kim,Female,3.88,G-10-T1
 >>>>>>> Stashed changes
+=======
+G-10,3903,CoE,Xiao Chen,Male,3.86,G-10-T1
+G-10,403,SoH,Hae-Jin Lee,Female,4.52,G-10-T1
+G-10,2405,ASE,Soo-Young Kim,Female,3.88,G-10-T1
+>>>>>>> Stashed changes
 G-10,171,CCEB,Nina Bennett,Female,4.08,G-10-T1
 G-10,4308,MAE,Sho Nakajima,Male,4.27,G-10-T2
 G-10,3395,CoB (NBS),Michael Miller,Male,3.95,G-10-T2
@@ -5070,6 +5087,7 @@ G-10,3329,MAE,Adrian Castillo,Male,4.07,G-10-T10
 G-10,5121,MSE,Ximena Fernandez,Female,4.12,G-10-T10
 G-10,3189,CCEB,Rhea Lee,Female,4.07,G-10-T10
 G-10,223,MAE,Jaxon Hall,Male,4.12,G-10-T10
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-100,424,CEE,Ashok Nair,Male,4.52,G-100-T1
@@ -5140,6 +5158,16 @@ G-100,4043,CCDS,Adrian King,Male,4.12,G-100-T2
 G-100,2017,CoE,Caiyun,Male,3.91,G-100-T2
 G-100,1824,MAE,Yuanqing,Female,4.25,G-100-T2
 >>>>>>> Stashed changes
+=======
+G-100,424,CEE,Ashok Nair,Male,4.52,G-100-T1
+G-100,2603,CoE,Ali Rehman,Male,4.14,G-100-T1
+G-100,5269,MSE,Anjali Nair,Female,4.27,G-100-T1
+G-100,5534,SSS,Neelam Bhatia,Female,4.05,G-100-T1
+G-100,4857,EEE,Jordan Chen,Male,4.06,G-100-T1
+G-100,4043,CCDS,Adrian King,Male,4.12,G-100-T2
+G-100,2017,CoE,Caiyun,Male,3.91,G-100-T2
+G-100,1824,MAE,Yuanqing,Female,4.25,G-100-T2
+>>>>>>> Stashed changes
 G-100,2468,EEE,Bella Perry,Female,3.9,G-100-T2
 G-100,2332,CoB (NBS),Maya Ong,Female,4.14,G-100-T2
 G-100,2040,SoH,Wesley Turner,Male,4.17,G-100-T3
@@ -5182,6 +5210,7 @@ G-100,2000,NIE,Danty Susanto,Male,4.05,G-100-T10
 G-100,4268,CCEB,Nadia Binti Azhar,Female,4.15,G-100-T10
 G-100,491,CoB (NBS),Fangling,Female,4.05,G-100-T10
 G-100,1875,SoH,Rachel Lee,Female,4.11,G-100-T10
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-101,35,SoH,Riley Lim,Male,4.48,G-101-T1
@@ -5244,6 +5273,12 @@ G-101,4928,SPMS,Weijun,Male,3.85,G-101-T1
 G-101,2753,MAE,Zadie Harris,Female,4.52,G-101-T1
 G-101,715,ASE,Zoe King,Female,3.88,G-101-T1
 >>>>>>> Stashed changes
+=======
+G-101,35,SoH,Riley Lim,Male,4.48,G-101-T1
+G-101,4928,SPMS,Weijun,Male,3.85,G-101-T1
+G-101,2753,MAE,Zadie Harris,Female,4.52,G-101-T1
+G-101,715,ASE,Zoe King,Female,3.88,G-101-T1
+>>>>>>> Stashed changes
 G-101,4045,MAE,Sofia Reddy,Female,4.09,G-101-T1
 G-101,2425,SPMS,Asher Nelson,Male,4.21,G-101-T2
 G-101,1353,MAE,Kieran Harris,Male,3.91,G-101-T2
@@ -5292,6 +5327,7 @@ G-101,4526,CCDS,Hope Chen,Female,4.04,G-101-T10
 G-101,3088,MSE,Eli Cruz,Male,4.11,G-101-T10
 G-102,818,SSS,Hansel Bautista,Male,4.06,G-102-T1
 G-102,3439,SBS,Asher Clark,Male,4.03,G-102-T1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-102,5690,CCEB,Maharani Sari,Female,4.3,G-102-T1
@@ -6662,6 +6698,467 @@ G-110,5666,CCDS,Anya Bogdanova,Female,3.94,G-110-T2
 G-110,3031,CCEB,Brianna Foster,Female,4.09,G-110-T2
 G-110,5221,CCDS,Faisal Malik,Male,4.15,G-110-T3
 >>>>>>> Stashed changes
+=======
+G-102,5690,CCEB,Maharani Sari,Female,4.3,G-102-T1
+G-102,4862,CCDS,Melati Ahmad,Female,3.88,G-102-T1
+G-102,5888,CEE,Bradley Yang,Male,4.09,G-102-T1
+G-102,2376,MSE,Hao Yang Tan,Male,4.3,G-102-T2
+G-102,1768,SoH,Travis Lim,Male,4.0,G-102-T2
+G-102,1634,CCDS,Sofia Hernandez,Female,4.26,G-102-T2
+G-102,3168,MAE,Sakshi Iyer,Female,3.94,G-102-T2
+G-102,2013,NIE,Wyatt Thompson,Male,4.09,G-102-T2
+G-102,783,CCDS,Ajay Bhatt,Male,4.22,G-102-T3
+G-102,4386,WKW SCI,Riku Takeda,Male,4.01,G-102-T3
+G-102,714,CoB (NBS),Nisha Gupta,Female,4.21,G-102-T3
+G-102,3717,EEE,Nafisa Ali,Female,3.95,G-102-T3
+G-102,613,SBS,Nina Phillips,Female,4.11,G-102-T3
+G-102,2373,NIE,Elisha Wu,Male,4.23,G-102-T4
+G-102,5578,CCDS,Minh Tran,Male,4.03,G-102-T4
+G-102,4379,MAE,Zoe Martinez,Female,4.21,G-102-T4
+G-102,5928,SSS,Anjali Kumar,Female,3.95,G-102-T4
+G-102,3592,EEE,Alina Awan,Female,4.1,G-102-T4
+G-102,4404,MAE,Omar Farooq,Male,4.2,G-102-T5
+G-102,1688,MSE,Pranata Santoso,Male,3.95,G-102-T5
+G-102,5144,CCEB,Aria Murphy,Female,4.2,G-102-T5
+G-102,2560,SBS,Simran Singh,Female,4.03,G-102-T5
+G-102,5023,LKCMedicine,Svetlana Chernyshova,Female,4.06,G-102-T5
+G-102,5913,MAE,Ulysses Salazar,Male,4.2,G-102-T6
+G-102,2221,EEE,Levi Huang,Male,4.04,G-102-T6
+G-102,337,CoB (NBS),Kanwal Bukhari,Female,4.16,G-102-T6
+G-102,5147,SoH,Min-Ji Park,Female,4.03,G-102-T6
+G-102,3957,CEE,Megan Walker,Female,4.06,G-102-T6
+G-102,956,SBS,Raj Tan,Male,4.17,G-102-T7
+G-102,103,CoE,Maximus Wright,Male,4.05,G-102-T7
+G-102,2079,CoB (NBS),Gina Lau,Female,4.15,G-102-T7
+G-102,448,SSS,Margarita Sokolova,Female,4.03,G-102-T7
+G-102,3909,CCEB,Zara Lim,Female,4.1,G-102-T7
+G-102,3820,SSS,Felix Wong,Male,4.14,G-102-T8
+G-102,3692,EEE,Harsh Kumar,Male,4.05,G-102-T8
+G-102,5447,CCDS,Lan Nguyen,Female,4.15,G-102-T8
+G-102,2192,SPMS,Liu Fang,Female,4.03,G-102-T8
+G-102,2720,WKW SCI,Nira Gupta,Female,4.12,G-102-T8
+G-102,2403,MAE,Henry Tan,Male,4.12,G-102-T9
+G-102,2315,SPMS,Cheng Fang Tan,Male,4.05,G-102-T9
+G-102,3043,CoE,Maya Sari,Female,4.15,G-102-T9
+G-102,902,MSE,Layla Cooper,Female,4.03,G-102-T9
+G-102,828,SSS,Sakshi Singh,Female,4.14,G-102-T9
+G-102,2246,SoH,Luca Torres,Male,4.12,G-102-T10
+G-102,1362,MAE,Yong Hui,Male,4.21,G-102-T10
+G-102,2595,CoE,Fariha Noor,Female,4.14,G-102-T10
+G-102,39,EEE,Lyric Tan,Female,4.04,G-102-T10
+G-102,3413,SSS,Kiran Shah,Female,4.12,G-102-T10
+G-103,4224,SoH,Ethan White,Male,4.11,G-103-T1
+G-103,1553,EEE,Isaac Thompson,Male,4.03,G-103-T1
+G-103,3554,CCDS,Asha Mehta,Female,4.52,G-103-T1
+G-103,2302,CEE,Yvonne Ng,Female,3.8,G-103-T1
+G-103,5493,CCEB,Amna Bukhari,Female,4.11,G-103-T1
+G-103,4809,EEE,Vikram Singh,Male,4.13,G-103-T2
+G-103,1787,CEE,Xiao Wei Tan,Male,3.95,G-103-T2
+G-103,1202,SSS,Maya Gonzales,Female,4.22,G-103-T2
+G-103,952,MSE,Nadia Binti Zulkifli,Female,3.87,G-103-T2
+G-103,1495,CCDS,Amira Tan,Female,4.15,G-103-T2
+G-103,2601,SSS,Tommy Wu,Male,4.22,G-103-T3
+G-103,1613,SBS,Graham Jackson,Male,3.97,G-103-T3
+G-103,2602,CCDS,Fatima Baig,Female,4.25,G-103-T3
+G-103,778,CoB (NBS),Selina Loh,Female,3.91,G-103-T3
+G-103,4612,MAE,Kylie Chen,Female,4.15,G-103-T3
+G-103,4181,CoB (NBS),Simon Lee,Male,4.02,G-103-T4
+G-103,4678,SPMS,Irfan Bin Hassan,Male,4.0,G-103-T4
+G-103,5483,MAE,Camila Li,Female,4.27,G-103-T4
+G-103,1551,CCEB,Maggie Kwan,Female,3.91,G-103-T4
+G-103,5627,SSS,Anjali Singh,Female,4.16,G-103-T4
+G-103,2165,CoE,David Young,Male,4.19,G-103-T5
+G-103,18,CEE,Alan Chan,Male,4.0,G-103-T5
+G-103,4964,CCDS,Hannah Sanders,Female,4.2,G-103-T5
+G-103,5970,SBS,Layla Fisher,Female,4.01,G-103-T5
+G-103,835,SoH,Maya Wilson,Female,4.13,G-103-T5
+G-103,2559,CEE,Everett Harris,Male,4.14,G-103-T6
+G-103,1879,MSE,Naim Bin Hashim,Male,4.2,G-103-T6
+G-103,4821,CoB (NBS),Samantha Khan,Female,4.19,G-103-T6
+G-103,40,LKCMedicine,Shiloh Lin,Female,4.05,G-103-T6
+G-103,1847,CoE,Talha Iqbal,Male,4.11,G-103-T6
+G-103,3497,NIE,Hikaru Sato,Male,4.14,G-103-T7
+G-103,4616,ASE,Eli Tan,Male,3.88,G-103-T7
+G-103,4427,EEE,Willow Wong,Female,4.19,G-103-T7
+G-103,1292,SoH,Queenie Lee,Female,4.06,G-103-T7
+G-103,3932,WKW SCI,Vy Nguyen,Male,4.11,G-103-T7
+G-103,5040,ASE,Dev Sharma,Male,4.26,G-103-T8
+G-103,2099,CCDS,Fahim Hussein,Male,4.03,G-103-T8
+G-103,4132,EEE,Aria Martinez,Female,4.18,G-103-T8
+G-103,4837,SBS,Yuna Wong,Female,4.07,G-103-T8
+G-103,344,CEE,Tyler Hall,Male,4.11,G-103-T8
+G-103,1911,CEE,Mansoor Qureshi,Male,4.12,G-103-T9
+G-103,925,MSE,Saad Malik,Male,4.05,G-103-T9
+G-103,4051,MAE,Fatima Malik,Female,4.18,G-103-T9
+G-103,3251,EEE,Emily Scott,Female,4.07,G-103-T9
+G-103,2189,CoB (NBS),Zachary Lee,Male,4.11,G-103-T9
+G-103,397,CoB (NBS),Chong Wang,Male,4.25,G-103-T10
+G-103,2679,SSS,Khalil Bin Ismail,Male,4.09,G-103-T10
+G-103,4559,EEE,Sofia Kim,Female,4.17,G-103-T10
+G-103,4842,SoH,Carmen Ong,Female,4.09,G-103-T10
+G-103,1618,CEE,Dallas Huang,Male,4.09,G-103-T10
+G-104,759,CCDS,Daniel Adams,Male,4.05,G-104-T1
+G-104,1542,WKW SCI,John Lim,Male,3.95,G-104-T1
+G-104,3937,SSS,Nisha Yadav,Female,4.18,G-104-T1
+G-104,3080,NIE,Tara Wati,Female,3.85,G-104-T1
+G-104,1649,MAE,Vera Ong,Female,4.09,G-104-T1
+G-104,3873,CoB (NBS),Leo Pranata,Male,4.2,G-104-T2
+G-104,5540,EEE,Kamran Farooq,Male,4.01,G-104-T2
+G-104,5905,CCDS,Emi Yamashita,Female,4.22,G-104-T2
+G-104,2233,SBS,Chloe Scott,Female,3.85,G-104-T2
+G-104,2898,SSS,Nancy Yeo,Female,4.08,G-104-T2
+G-104,4988,CCDS,Rafael Wong,Male,4.11,G-104-T3
+G-104,5570,SPMS,Gideon Zhang,Male,4.01,G-104-T3
+G-104,4403,EEE,Ying Zhang,Female,4.18,G-104-T3
+G-104,5962,CoB (NBS),Madison Scott,Female,3.92,G-104-T3
+G-104,1446,NIE,Dahlia Chen,Female,4.04,G-104-T3
+G-104,3595,NIE,Eamon Liu,Male,4.16,G-104-T4
+G-104,238,CCEB,Prashant Joshi,Male,4.03,G-104-T4
+G-104,2653,CCDS,Chloe Tan,Female,4.17,G-104-T4
+G-104,5263,CoB (NBS),Lily Ong,Female,3.93,G-104-T4
+G-104,1600,WKW SCI,Sophia Taylor,Female,4.06,G-104-T4
+G-104,5596,CCDS,Jason Tan,Male,4.16,G-104-T5
+G-104,90,ASE,Chandra Menon,Male,4.03,G-104-T5
+G-104,82,SSS,Giselle Wu,Female,4.14,G-104-T5
+G-104,3050,CCEB,Nia Wong,Female,3.95,G-104-T5
+G-104,1950,MAE,Lila Wu,Female,4.06,G-104-T5
+G-104,1891,MAE,Ryder Ward,Male,4.15,G-104-T6
+G-104,4664,CoE,Lance Alvarado,Male,4.04,G-104-T6
+G-104,2622,EEE,Priya Roy,Female,4.11,G-104-T6
+G-104,2932,SSS,Gracelyn Dela Cruz,Female,3.96,G-104-T6
+G-104,4001,SoH,Ashna Mehta,Female,4.06,G-104-T6
+G-104,33,ASE,Waleed Malik,Male,4.15,G-104-T7
+G-104,3268,CoB (NBS),Gideon Torres,Male,4.04,G-104-T7
+G-104,5020,NIE,Xena Reed,Female,4.11,G-104-T7
+G-104,2562,SoH,Zainab Noor,Female,4.0,G-104-T7
+G-104,2556,MAE,Chloe Wu,Female,4.03,G-104-T7
+G-104,1395,SoH,Anil Reddy,Male,4.14,G-104-T8
+G-104,3335,EEE,William Yip,Male,4.22,G-104-T8
+G-104,2273,SSS,Samantha Ong,Female,4.1,G-104-T8
+G-104,4894,CCDS,Fitri Binti Mohd,Female,4.0,G-104-T8
+G-104,5685,CCEB,Maya Rahman,Female,4.06,G-104-T8
+G-104,4349,WKW SCI,Benjamin Huang,Male,4.11,G-104-T9
+G-104,5317,CoB (NBS),Zhen Zhang,Male,4.06,G-104-T9
+G-104,1375,CEE,Pallavi Mehta,Female,4.09,G-104-T9
+G-104,2204,EEE,Anaya Singh,Female,4.0,G-104-T9
+G-104,4039,CCDS,Anita Lim,Female,4.06,G-104-T9
+G-104,2962,CoE,Jun Zhang,Male,4.19,G-104-T10
+G-104,3665,CCDS,Shahid Ali,Male,4.11,G-104-T10
+G-104,832,SPMS,Sarah Liu,Female,4.09,G-104-T10
+G-104,4187,SBS,Isha Verma,Female,4.03,G-104-T10
+G-104,5684,SoH,Emily Johnson,Female,4.03,G-104-T10
+G-105,5377,CCDS,Yang Jun,Male,4.17,G-105-T1
+G-105,463,MAE,Arjun Nair,Male,3.92,G-105-T1
+G-105,2728,EEE,Daphne Li,Female,4.26,G-105-T1
+G-105,3345,CCEB,Vira Dwi,Female,3.8,G-105-T1
+G-105,5355,CoB (NBS),Nicolas Ramos,Male,4.14,G-105-T1
+G-105,2392,SoH,Max Johnson,Male,4.21,G-105-T2
+G-105,1529,CCDS,Devansh Mehta,Male,4.0,G-105-T2
+G-105,5770,NIE,Qiana Lestari,Female,4.25,G-105-T2
+G-105,2732,SSS,Addison Lin,Female,4.02,G-105-T2
+G-105,1043,MAE,Logan Martin,Male,4.12,G-105-T2
+G-105,5003,CCDS,Imran Bin Zahid,Male,4.3,G-105-T3
+G-105,1490,EEE,Amit Agarwal,Male,4.15,G-105-T3
+G-105,4188,SSS,Sophie Reed,Female,4.23,G-105-T3
+G-105,5029,WKW SCI,Olivia Miller,Female,3.87,G-105-T3
+G-105,2913,SoH,Kunal Mehta,Male,4.12,G-105-T3
+G-105,1550,CEE,Chen Bo,Male,4.17,G-105-T4
+G-105,401,CoB (NBS),Haruki Suzuki,Male,4.01,G-105-T4
+G-105,4364,MAE,Charlotte Gonzalez,Female,4.22,G-105-T4
+G-105,333,CCDS,Maya Torres,Female,3.92,G-105-T4
+G-105,4589,CCEB,Sabrina Zhao,Female,4.11,G-105-T4
+G-105,5339,SoH,Callum Williams,Male,4.19,G-105-T5
+G-105,500,CoB (NBS),Vincent Wong,Male,4.01,G-105-T5
+G-105,3728,MAE,Lola Zhang,Female,4.22,G-105-T5
+G-105,5909,SSS,Aditi Kumar,Female,4.01,G-105-T5
+G-105,3415,CCDS,Tatum Roberts,Female,4.06,G-105-T5
+G-105,5797,MAE,Shahid Raza,Male,4.02,G-105-T6
+G-105,1974,CEE,Ronald Tan,Male,4.05,G-105-T6
+G-105,1564,EEE,Amina Binti Zain,Female,4.15,G-105-T6
+G-105,1141,SSS,Mei Chen,Female,4.02,G-105-T6
+G-105,4744,CCDS,Alyssa Tan,Female,4.1,G-105-T6
+G-105,1927,MSE,Dao Tran,Male,4.15,G-105-T7
+G-105,1789,NIE,Dallas Liu,Male,4.05,G-105-T7
+G-105,3970,CoB (NBS),Cora Zhang,Female,4.15,G-105-T7
+G-105,1803,EEE,Isabella Rodriguez,Female,3.86,G-105-T7
+G-105,3108,SSS,Pallavi Kumar,Female,4.1,G-105-T7
+G-105,4869,SPMS,Kiran Rao,Male,4.15,G-105-T8
+G-105,2010,CEE,Trung Le,Male,4.06,G-105-T8
+G-105,951,SSS,Nisha Bansal,Female,4.15,G-105-T8
+G-105,5565,ASE,Yumi Tanaka,Female,4.03,G-105-T8
+G-105,4758,CoB (NBS),Ping An,Female,4.1,G-105-T8
+G-105,3668,ADM,Saad Javed,Male,4.15,G-105-T9
+G-105,800,CoE,Ricky Chen,Male,4.09,G-105-T9
+G-105,2161,EEE,Tessa Li,Female,4.14,G-105-T9
+G-105,4510,SBS,Kylie Zhang,Female,4.04,G-105-T9
+G-105,28,CoB (NBS),Claudia Tan,Female,4.09,G-105-T9
+G-105,5816,CCDS,Bennett Liu,Male,4.14,G-105-T10
+G-105,1007,CoB (NBS),Jonathan Wu,Male,4.09,G-105-T10
+G-105,4431,SBS,Chen Li,Female,4.12,G-105-T10
+G-105,5218,MAE,Julia Tan,Female,4.04,G-105-T10
+G-105,5950,CEE,James Jackson,Male,4.09,G-105-T10
+G-106,930,CoE,Jason Robinson,Male,4.52,G-106-T1
+G-106,4783,MAE,Rahul Mehta,Male,4.08,G-106-T1
+G-106,1929,EEE,Kavitha Tan,Female,4.3,G-106-T1
+G-106,5088,CCEB,Neelam Rani,Female,3.95,G-106-T1
+G-106,5657,SPMS,Charlotte Harris,Female,4.02,G-106-T1
+G-106,3686,EEE,Cole Huang,Male,4.19,G-106-T2
+G-106,3008,CCDS,Thomas Harris,Male,3.95,G-106-T2
+G-106,2588,SoH,Mira Binti Zaki,Female,4.2,G-106-T2
+G-106,3583,CCEB,Aria Lee,Female,3.88,G-106-T2
+G-106,1730,CoB (NBS),Siddharth Gupta,Male,4.14,G-106-T2
+G-106,113,MAE,Fahad Ali,Male,4.19,G-106-T3
+G-106,3471,CCEB,Gandhi Saputra,Male,3.95,G-106-T3
+G-106,164,LKCMedicine,Nisha Verma,Female,4.18,G-106-T3
+G-106,4753,EEE,Zara Malik,Female,3.9,G-106-T3
+G-106,4317,CoB (NBS),Oliver Martinez,Male,4.12,G-106-T3
+G-106,2370,MAE,Zedrick Ong,Male,4.05,G-106-T4
+G-106,5983,SPMS,Sergei Ivanovich,Male,4.0,G-106-T4
+G-106,1888,CoE,Guofeng,Female,4.15,G-106-T4
+G-106,5885,EEE,Jun Liu,Female,3.9,G-106-T4
+G-106,1002,CCEB,Priya Nair,Female,4.12,G-106-T4
+G-106,4438,EEE,Noel Pineda,Male,4.19,G-106-T5
+G-106,4581,SPMS,Jai Mehta,Male,4.0,G-106-T5
+G-106,5089,MAE,Isla Lee,Female,4.15,G-106-T5
+G-106,850,CCDS,Sienna Lee,Female,3.88,G-106-T5
+G-106,5898,CCEB,Quinn Larson,Female,4.12,G-106-T5
+G-106,2144,CoE,Oscar Villanueva,Male,4.19,G-106-T6
+G-106,4732,EEE,Albert Wang,Male,4.01,G-106-T6
+G-106,3330,SSS,Jingyi,Female,4.15,G-106-T6
+G-106,4934,CCEB,Arya Kapoor,Female,3.97,G-106-T6
+G-106,1580,WKW SCI,Nikhil Sharma,Male,4.11,G-106-T6
+G-106,1294,MAE,Nolan Reyes,Male,4.16,G-106-T7
+G-106,330,EEE,Dylan Li,Male,3.9,G-106-T7
+G-106,3001,CCDS,Piper Chen,Female,4.15,G-106-T7
+G-106,623,CoB (NBS),Minghao,Female,4.0,G-106-T7
+G-106,2112,SoH,Noah Morris,Male,4.11,G-106-T7
+G-106,4201,SPMS,Reyansh Iyer,Male,4.14,G-106-T8
+G-106,3551,EEE,Harrison Moore,Male,4.19,G-106-T8
+G-106,1470,CCEB,Tania Ng,Female,4.15,G-106-T8
+G-106,5093,MAE,Megan Zhao,Female,4.01,G-106-T8
+G-106,5670,SoH,Miyu Nishimura,Female,4.06,G-106-T8
+G-106,2147,WKW SCI,Hafiz Ahmad,Male,4.14,G-106-T9
+G-106,2385,ADM,Hoang Nguyen,Male,4.02,G-106-T9
+G-106,1168,NIE,Eun-Hee Kim,Female,4.14,G-106-T9
+G-106,1785,MAE,Gabriella Dela Cruz,Female,4.01,G-106-T9
+G-106,4387,CCEB,Kathy Tan,Female,4.05,G-106-T9
+G-106,3054,CCEB,Om Tan,Male,4.15,G-106-T10
+G-106,2713,MAE,Kevin Wang,Male,4.09,G-106-T10
+G-106,5676,EEE,Akemi Takahashi,Female,4.12,G-106-T10
+G-106,1415,NIE,Cleo Morales,Female,4.02,G-106-T10
+G-106,3654,CCDS,Aria Tan,Female,4.04,G-106-T10
+G-107,5960,CEE,Yuri Grigorev,Male,4.1,G-107-T1
+G-107,2715,MAE,Harvey Lim,Male,3.88,G-107-T1
+G-107,4040,CCEB,Rina Ali,Female,4.09,G-107-T1
+G-107,2471,CCDS,Nguyen Thi Hoa,Female,3.87,G-107-T1
+G-107,937,ASE,Nina Binti Noor,Female,3.86,G-107-T1
+G-107,3849,CCDS,Zane Wong,Male,4.03,G-107-T2
+G-107,4716,MAE,Joko Susanto,Male,3.9,G-107-T2
+G-107,895,CCEB,Saanvi Roy,Female,4.25,G-107-T2
+G-107,5132,ASE,Min-Jung Kim,Female,3.85,G-107-T2
+G-107,1968,SBS,Yumi Hayashi,Female,3.89,G-107-T2
+G-107,5804,SPMS,Liu Yang,Male,4.16,G-107-T3
+G-107,1033,WKW SCI,Tanishq Reddy,Male,3.92,G-107-T3
+G-107,598,MSE,Riana Binti Abdul,Female,4.25,G-107-T3
+G-107,768,CoB (NBS),Kavita Singh,Female,3.89,G-107-T3
+G-107,2012,SSS,Charu Iyer,Female,3.92,G-107-T3
+G-107,5335,SPMS,Qiang Zhang,Male,4.2,G-107-T4
+G-107,4336,EEE,Xiangqi,Male,4.0,G-107-T4
+G-107,754,MAE,Bria Tsai,Female,4.23,G-107-T4
+G-107,1541,CCEB,Zulaikha Binti Rahman,Female,4.0,G-107-T4
+G-107,3344,CCDS,Lana Tan,Female,4.0,G-107-T4
+G-107,2916,SSS,Omar Rivera,Male,4.12,G-107-T5
+G-107,4074,CEE,Daniel Tan,Male,4.0,G-107-T5
+G-107,4621,SPMS,Amelia Lewis,Female,4.22,G-107-T5
+G-107,5790,CCEB,Cheryl Ong,Female,4.0,G-107-T5
+G-107,2941,EEE,Xiaoling Chen,Female,4.02,G-107-T5
+G-107,1979,NIE,Archer Powell,Male,4.12,G-107-T6
+G-107,3867,CoB (NBS),Zane Navarro,Male,4.18,G-107-T6
+G-107,5212,EEE,Sana Menon,Female,4.22,G-107-T6
+G-107,5645,CCEB,Le Van Minh,Female,4.02,G-107-T6
+G-107,2196,SBS,Jia Li,Female,4.03,G-107-T6
+G-107,3973,WKW SCI,Karan Patel,Male,4.14,G-107-T7
+G-107,2445,SPMS,Chad Dela Cruz,Male,4.02,G-107-T7
+G-107,4901,MAE,Victoria Reyes,Female,4.2,G-107-T7
+G-107,992,SSS,Amara Siti,Female,4.03,G-107-T7
+G-107,2334,EEE,Meera Gupta,Female,4.04,G-107-T7
+G-107,4677,NIE,Emery Wu,Male,4.1,G-107-T8
+G-107,1463,EEE,Xiao Zhang,Male,4.02,G-107-T8
+G-107,2292,CEE,Lily Lim,Female,4.19,G-107-T8
+G-107,830,CCDS,Samreen Ali,Female,4.07,G-107-T8
+G-107,149,MAE,Ananya Roy,Female,4.08,G-107-T8
+G-107,5767,EEE,Carter Hall,Male,4.14,G-107-T9
+G-107,180,CEE,Kai Qiang,Male,4.04,G-107-T9
+G-107,4749,WKW SCI,Nina Zhao,Female,4.15,G-107-T9
+G-107,1212,CoB (NBS),Samantha Sanchez,Female,4.25,G-107-T9
+G-107,1308,CCEB,Vera Chan,Female,4.1,G-107-T9
+G-107,112,CoB (NBS),Misha Malik,Female,4.14,G-107-T10
+G-107,89,CoE,Suresh Bhat,Female,4.14,G-107-T10
+G-107,2877,CCDS,Hayden Wu,Female,4.12,G-107-T10
+G-107,2475,SPMS,Madison Torres,Female,4.12,G-107-T10
+G-107,4572,EEE,Arjun Sinha,Male,4.09,G-107-T10
+G-108,3985,SPMS,Asher Thompson,Male,4.52,G-108-T1
+G-108,2141,CEE,Raj Patel,Male,3.8,G-108-T1
+G-108,1538,EEE,Shreya Rani,Female,4.22,G-108-T1
+G-108,1590,CCDS,Yan Mei,Female,3.87,G-108-T1
+G-108,5576,MAE,Pooja Nair,Female,4.03,G-108-T1
+G-108,3933,CEE,Matthew Martinez,Male,4.57,G-108-T2
+G-108,2926,CCDS,Aarav Nair,Male,3.89,G-108-T2
+G-108,1941,CCEB,Sophia Lee,Female,4.22,G-108-T2
+G-108,1809,SSS,Ivy Wang,Female,3.89,G-108-T2
+G-108,3128,EEE,Harini Nair,Female,4.02,G-108-T2
+G-108,3362,CCEB,Zeeshan Ahmed,Male,4.06,G-108-T3
+G-108,3913,SSS,Randy Lim,Male,3.88,G-108-T3
+G-108,5469,CCDS,Sakura Yamamoto,Female,4.21,G-108-T3
+G-108,4890,WKW SCI,Rafika Binti Harun,Female,3.9,G-108-T3
+G-108,5588,EEE,Shoji Takahashi,Male,4.11,G-108-T3
+G-108,2130,SSS,Kendrick Alvarado,Male,4.18,G-108-T4
+G-108,5153,CoB (NBS),Caleb Parker,Male,4.18,G-108-T4
+G-108,2564,EEE,Tara Lim,Female,4.19,G-108-T4
+G-108,4574,CCDS,Hina Waseem,Female,3.95,G-108-T4
+G-108,3972,CEE,Malia Tan,Female,4.08,G-108-T4
+G-108,1678,CCDS,Cameron Ward,Male,4.19,G-108-T5
+G-108,3252,CoB (NBS),Samuel Lee,Male,4.02,G-108-T5
+G-108,2511,EEE,Hana Watanabe,Female,4.18,G-108-T5
+G-108,3193,SoH,Siti Aisya Binti Ibrahim,Female,4.0,G-108-T5
+G-108,2509,CoE,Hugo Long,Male,4.06,G-108-T5
+G-108,2027,CCDS,Mason King,Male,4.18,G-108-T6
+G-108,5322,SoH,Rajiv Nair,Male,4.02,G-108-T6
+G-108,5110,SBS,Sheng Liu,Female,4.14,G-108-T6
+G-108,4881,EEE,Maya Devi,Female,4.0,G-108-T6
+G-108,2614,SSS,Vidya Menon,Female,4.07,G-108-T6
+G-108,2716,CoE,Liang Bo,Male,4.19,G-108-T7
+G-108,5244,CEE,Nguyen Van Cuong,Male,4.02,G-108-T7
+G-108,2303,CCDS,Ruby Diaz,Female,4.12,G-108-T7
+G-108,3921,ADM,Camila Allen,Female,4.0,G-108-T7
+G-108,2362,EEE,Zheng Guo,Male,4.08,G-108-T7
+G-108,4297,MAE,Rizqi Bin Farhan,Male,4.15,G-108-T8
+G-108,2663,NIE,Liam Reddy,Male,4.02,G-108-T8
+G-108,4720,CoE,Qing Liu,Female,4.11,G-108-T8
+G-108,2597,CCEB,Renee Lee,Female,4.01,G-108-T8
+G-108,3276,CCDS,Shahril Bin Hamid,Male,4.1,G-108-T8
+G-108,5266,WKW SCI,Julian Wu,Male,4.12,G-108-T9
+G-108,4495,CEE,Rajendra Kumar,Male,4.01,G-108-T9
+G-108,3184,CCEB,Lindsey Lin,Female,4.1,G-108-T9
+G-108,2470,CoB (NBS),Riya Mehta,Female,4.02,G-108-T9
+G-108,2616,SSS,Priya Menon,Female,4.09,G-108-T9
+G-108,5733,MAE,Chen Ming,Male,4.11,G-108-T10
+G-108,1923,CoB (NBS),Noah Gray,Male,4.06,G-108-T10
+G-108,1905,MSE,Nadya Zainal,Female,4.09,G-108-T10
+G-108,1643,SBS,Mae Chang,Female,4.02,G-108-T10
+G-108,1339,SSS,Shun Takahashi,Male,4.11,G-108-T10
+G-109,150,EEE,Kong Wei Tan,Male,4.22,G-109-T1
+G-109,3729,CCDS,Kenta Suzuki,Male,4.02,G-109-T1
+G-109,4376,CCEB,Carmen Tan,Female,4.3,G-109-T1
+G-109,5620,MAE,Riya Verma,Female,3.85,G-109-T1
+G-109,3429,CoB (NBS),Samantha Wilson,Female,4.22,G-109-T1
+G-109,5059,EEE,Logan Harris,Male,4.22,G-109-T2
+G-109,686,NIE,Rameez Shah,Male,3.96,G-109-T2
+G-109,458,CCEB,Harlow Chen,Female,4.26,G-109-T2
+G-109,4327,CCDS,Arav Singh,Female,3.89,G-109-T2
+G-109,446,CoB (NBS),Hanh Pham,Female,4.09,G-109-T2
+G-109,1482,MSE,Asad Ali,Male,4.11,G-109-T3
+G-109,224,EEE,Alvin Dela Cruz,Male,3.96,G-109-T3
+G-109,2533,SPMS,Lina Teo,Female,4.14,G-109-T3
+G-109,1956,CCEB,Zarina Binti Ibrahim,Female,3.9,G-109-T3
+G-109,4796,CoB (NBS),Cassidy Wang,Female,4.12,G-109-T3
+G-109,1330,EEE,Cheng Wei Yeo,Male,4.2,G-109-T4
+G-109,3016,CEE,Kendrick White,Male,4.0,G-109-T4
+G-109,5299,CoB (NBS),Ifti Binti Rahman,Female,4.2,G-109-T4
+G-109,3406,MAE,Ritika Joshi,Female,3.9,G-109-T4
+G-109,4225,CCEB,Liu Hong,Female,4.12,G-109-T4
+G-109,1960,SPMS,Ajay Reddy,Male,4.17,G-109-T5
+G-109,3953,CoE,James Taylor,Male,4.09,G-109-T5
+G-109,4954,CoB (NBS),Nori Matsuda,Female,4.2,G-109-T5
+G-109,3658,EEE,Alia Mohd,Female,3.91,G-109-T5
+G-109,263,CCEB,Norah Ng,Female,4.14,G-109-T5
+G-109,5411,CCDS,Cole Moore,Male,4.17,G-109-T6
+G-109,114,EEE,Noah Harris,Male,4.01,G-109-T6
+G-109,1426,CoB (NBS),Wendy Cheung,Female,4.18,G-109-T6
+G-109,1442,CCEB,Maya Binti Rahim,Female,3.95,G-109-T6
+G-109,4029,SSS,Nova Ong,Female,4.08,G-109-T6
+G-109,892,EEE,Phan Van Hoa,Male,4.17,G-109-T7
+G-109,3662,CCDS,Nitin Chaudhary,Male,4.01,G-109-T7
+G-109,1661,CoB (NBS),Suriya Tan,Female,4.19,G-109-T7
+G-109,695,CCEB,Xuefeng,Female,4.0,G-109-T7
+G-109,293,SBS,Claire Bennett,Female,4.06,G-109-T7
+G-109,973,EEE,Zhi Wei Lim,Male,4.22,G-109-T8
+G-109,4098,WKW SCI,Shahrir Bin Rahman,Male,3.9,G-109-T8
+G-109,1135,CEE,Sofia Wong,Female,4.2,G-109-T8
+G-109,2958,CCDS,Ophelia Santos,Female,4.01,G-109-T8
+G-109,3577,CoB (NBS),Hana Takemura,Female,4.11,G-109-T8
+G-109,4933,EEE,Hussain Bin Mohd,Male,4.0,G-109-T9
+G-109,225,NIE,Shahril Bin Muni,Male,4.05,G-109-T9
+G-109,3273,MAE,Kanti Gupta,Female,4.17,G-109-T9
+G-109,3169,SoH,Alina Smith,Female,4.01,G-109-T9
+G-109,5595,CCDS,Sana Rehman,Female,4.11,G-109-T9
+G-109,1744,EEE,Fangling,Male,4.05,G-109-T10
+G-109,5018,EEE,Raj Patel,Male,4.05,G-109-T10
+G-109,3377,CCEB,Zoey Chen,Female,4.15,G-109-T10
+G-109,1409,CCEB,Miriam Tan,Female,4.02,G-109-T10
+G-109,5313,MSE,Nia Carter,Female,4.14,G-109-T10
+G-11,972,EEE,Dylan Anderson,Male,4.25,G-11-T1
+G-11,1759,CoB (NBS),Kunal Tan,Male,3.8,G-11-T1
+G-11,5697,MSE,Aisha Fitria,Female,4.3,G-11-T1
+G-11,1288,CEE,Elena Vladimirovna,Female,3.87,G-11-T1
+G-11,5714,CoB (NBS),Alondra Santos,Female,4.08,G-11-T1
+G-11,5408,CEE,Peiyu,Male,4.3,G-11-T2
+G-11,1183,WKW SCI,Tian Yi,Male,4.0,G-11-T2
+G-11,5744,SSS,Tania Kurnia,Female,4.3,G-11-T2
+G-11,4266,MAE,Dewi Astuti,Female,3.9,G-11-T2
+G-11,5846,EEE,Tara Kumar,Female,4.01,G-11-T2
+G-11,4595,EEE,Jovian Tan,Male,4.22,G-11-T3
+G-11,639,CCDS,Erqi,Male,4.0,G-11-T3
+G-11,4712,CoE,Neha Kapoor,Female,4.2,G-11-T3
+G-11,1996,SSS,Daya Kumari,Female,3.9,G-11-T3
+G-11,5844,CoB (NBS),Chloe Hu,Female,4.03,G-11-T3
+G-11,4299,CoB (NBS),Seth Lim,Male,4.22,G-11-T4
+G-11,312,CoB (NBS),William Lim,Male,4.01,G-11-T4
+G-11,796,SSS,Tanvi Agarwal,Female,4.2,G-11-T4
+G-11,635,MAE,Charlotte Thomas,Female,3.9,G-11-T4
+G-11,4450,CoB (NBS),Charlotte Martin,Female,4.01,G-11-T4
+G-11,3651,SPMS,Chengwei,Male,4.2,G-11-T5
+G-11,5889,WKW SCI,Tyler Moore,Male,4.02,G-11-T5
+G-11,5747,MAE,Cleo Wang,Female,4.17,G-11-T5
+G-11,4587,CoB (NBS),Ying Zhao,Female,3.91,G-11-T5
+G-11,5491,CCDS,Caleb Murphy,Male,4.05,G-11-T5
+G-11,1156,SBS,Hugo Huang,Male,4.17,G-11-T6
+G-11,1017,NIE,Ethan Lee,Male,4.02,G-11-T6
+G-11,268,ADM,Nora Zhang,Female,4.16,G-11-T6
+G-11,4041,SBS,Nina Butler,Female,3.91,G-11-T6
+G-11,2300,EEE,Liang Mei,Female,4.12,G-11-T6
+G-11,3974,EEE,Zhao Rui,Male,4.17,G-11-T7
+G-11,2918,CoB (NBS),Julian Tan,Male,4.03,G-11-T7
+G-11,3381,EEE,Sana Ali,Female,4.15,G-11-T7
+G-11,624,EEE,Kelly Lim,Female,3.96,G-11-T7
+G-11,5628,CCEB,Riya Khan,Female,4.04,G-11-T7
+G-11,1852,SPMS,Jin Lee,Male,4.15,G-11-T8
+G-11,4216,EEE,Jacob Howard,Male,4.03,G-11-T8
+G-11,5452,CCDS,Zainab Rahman,Female,4.15,G-11-T8
+G-11,4866,CoB (NBS),Richa Agarwal,Female,3.97,G-11-T8
+G-11,4974,CEE,Peilin,Female,4.05,G-11-T8
+G-11,1955,EEE,William Carter,Male,4.1,G-11-T9
+G-11,3869,CCDS,Sebastian Mitchell,Male,4.04,G-11-T9
+G-11,1377,ADM,Nguyen Hoang Khoa,Female,4.14,G-11-T9
+G-11,5936,MAE,Lian Liu,Female,4.0,G-11-T9
+G-11,5386,EEE,Arun Singh,Male,4.06,G-11-T9
+G-11,1505,EEE,Wesley Turner,Male,4.09,G-11-T10
+G-11,3687,CoB (NBS),Noah Wilson,Male,4.05,G-11-T10
+G-11,4128,CoE,Ella Johnson,Female,4.12,G-11-T10
+G-11,5396,CCDS,Alison Wong,Female,4.0,G-11-T10
+G-11,342,CCEB,Ethan Ong,Male,4.08,G-11-T10
+G-110,2975,EEE,Jia Wei,Male,4.16,G-110-T1
+G-110,941,MSE,Jamal Bin Rahman,Male,4.01,G-110-T1
+G-110,2044,CoB (NBS),Avery Chan,Female,4.21,G-110-T1
+G-110,3277,SBS,Akemi Watanabe,Female,3.87,G-110-T1
+G-110,4135,CCDS,Anjali Sharma,Female,4.1,G-110-T1
+G-110,2481,NIE,Rohan Shah,Male,4.18,G-110-T2
+G-110,4303,MAE,Jason Lam,Male,4.0,G-110-T2
+G-110,3908,CoB (NBS),Alana Lee,Female,4.19,G-110-T2
+G-110,5666,CCDS,Anya Bogdanova,Female,3.94,G-110-T2
+G-110,3031,CCEB,Brianna Foster,Female,4.09,G-110-T2
+G-110,5221,CCDS,Faisal Malik,Male,4.15,G-110-T3
+>>>>>>> Stashed changes
 G-110,4761,CoB (NBS),Rajesh Desai,Male,3.95,G-110-T3
 G-110,581,EEE,Wendy Chia,Female,4.19,G-110-T3
 G-110,183,MAE,Madison Edwards,Female,4.0,G-110-T3
@@ -6702,6 +7199,9 @@ G-110,5349,MAE,Ying Mei,Female,4.11,G-110-T10
 G-110,827,CCDS,Sukanya Das,Female,4.03,G-110-T10
 G-110,3578,SSS,Yuna Takahashi,Female,4.11,G-110-T10
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -6709,6 +7209,7 @@ G-111,3846,SSS,Mateo Huang,Male,4.52,G-111-T1
 G-111,2865,EEE,Parker Martin,Male,3.8,G-111-T1
 G-111,2491,CoB (NBS),Penny Wong,Female,4.25,G-111-T1
 G-111,4798,CCEB,Siti Nurhaliza Binti Idris,Female,3.8,G-111-T1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 G-111,1466,CoB (NBS),Kartik Reddy,Male,4.3,G-111-T1
@@ -6768,6 +7269,12 @@ G-111,1466,CoB (NBS),Kartik Reddy,Male,4.3,G-111-T2
 G-111,5127,NIE,Hiroshi Matsumoto,Male,3.87,G-111-T2
 G-111,5074,EEE,Willow Chen,Female,4.25,G-111-T2
 >>>>>>> Stashed changes
+=======
+G-111,203,SSS,Angela Lim,Female,4.04,G-111-T1
+G-111,1466,CoB (NBS),Kartik Reddy,Male,4.3,G-111-T2
+G-111,5127,NIE,Hiroshi Matsumoto,Male,3.87,G-111-T2
+G-111,5074,EEE,Willow Chen,Female,4.25,G-111-T2
+>>>>>>> Stashed changes
 G-111,582,CCDS,Sophie Mendoza,Female,3.9,G-111-T2
 G-111,444,CoE,Hao Xun,Male,4.14,G-111-T2
 G-111,3295,CoB (NBS),Panshi,Male,4.3,G-111-T3
@@ -6810,6 +7317,7 @@ G-111,2276,WKW SCI,Haruto Suzuki,Male,4.04,G-111-T10
 G-111,5213,SSS,Trisha Joshi,Female,4.12,G-111-T10
 G-111,221,CoB (NBS),Jasmine Rivera,Female,4.04,G-111-T10
 G-111,5350,CEE,Tian Hua,Male,4.09,G-111-T10
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-112,2257,EEE,Min Zhang,Male,4.3,G-112-T1
@@ -7018,6 +7526,59 @@ G-112,5830,MAE,Alice Wang,Female,4.05,G-112-T10
 G-112,502,CCDS,Fern Adams,Female,4.14,G-112-T10
 G-113,4565,CoB (NBS),Rohan Tan,Male,4.17,G-113-T1
 >>>>>>> Stashed changes
+=======
+G-112,2257,EEE,Min Zhang,Male,4.3,G-112-T1
+G-112,3457,CoE,Theo Cooper,Male,3.9,G-112-T1
+G-112,2625,CCDS,Layla Reddy,Female,4.52,G-112-T1
+G-112,1021,LKCMedicine,Linda Thomas,Female,3.86,G-112-T1
+G-112,2451,MAE,Fatima Noor,Female,4.21,G-112-T1
+G-112,2229,CoE,Dong Chen,Male,4.2,G-112-T2
+G-112,1500,ASE,Jagdeep Singh,Male,3.92,G-112-T2
+G-112,5019,CCDS,Farah Binti Ibrahim,Female,4.25,G-112-T2
+G-112,1838,MAE,Sofia Khanna,Female,4.01,G-112-T2
+G-112,44,EEE,Irene Cheung,Female,4.15,G-112-T2
+G-112,5038,CCDS,Ravi Deshmukh,Male,4.2,G-112-T3
+G-112,5966,EEE,Kyle Yip,Male,4.02,G-112-T3
+G-112,5890,CoB (NBS),Ella Zhao,Female,4.22,G-112-T3
+G-112,4938,ADM,Keiko Mori,Female,3.9,G-112-T3
+G-112,1022,CoE,Riley Jackson,Female,4.15,G-112-T3
+G-112,1032,MAE,Fadli Hidayat,Male,4.2,G-112-T4
+G-112,1723,EEE,Ashton Lee,Male,4.03,G-112-T4
+G-112,3967,CCDS,Uma Lopez,Female,4.22,G-112-T4
+G-112,4680,SSS,Laila Shah,Female,4.0,G-112-T4
+G-112,1936,SoH,Mai Le,Female,4.09,G-112-T4
+G-112,5151,CoE,Owais Javed,Male,4.15,G-112-T5
+G-112,1492,SPMS,Jackson Yang,Male,4.04,G-112-T5
+G-112,1251,SSS,Ngoc Ho,Female,4.08,G-112-T5
+G-112,369,SoH,Maris Tsai,Female,3.88,G-112-T5
+G-112,5487,MAE,Asha Tan,Female,4.1,G-112-T5
+G-112,1120,CCDS,Lincoln Yang,Male,4.15,G-112-T6
+G-112,3437,CoB (NBS),Bingqi,Male,4.05,G-112-T6
+G-112,3042,CCEB,Elena Brown,Female,4.2,G-112-T6
+G-112,4083,ADM,Sophia Moore,Female,4.03,G-112-T6
+G-112,2654,MAE,Charlotte Robinson,Female,4.09,G-112-T6
+G-112,5042,CEE,Tarun Nair,Male,4.17,G-112-T7
+G-112,2073,EEE,Chen Yu,Male,4.06,G-112-T7
+G-112,1622,CCDS,Talia Li,Female,4.18,G-112-T7
+G-112,583,MAE,Mackenzie Russell,Female,4.03,G-112-T7
+G-112,4503,CoE,Rowena Mendoza,Female,4.12,G-112-T7
+G-112,799,NIE,Sanjay Kapoor,Male,4.15,G-112-T8
+G-112,1450,MSE,Zeke Yang,Male,4.09,G-112-T8
+G-112,2745,CCEB,Sakura Watanabe,Female,4.17,G-112-T8
+G-112,5343,SBS,Ursula Turner,Female,4.04,G-112-T8
+G-112,5296,CCDS,Penny Kwan,Female,4.09,G-112-T8
+G-112,1044,CoE,Cameron Tan,Male,4.11,G-112-T9
+G-112,486,SSS,Rocco Ong,Male,4.09,G-112-T9
+G-112,3907,SBS,Ritika Patel,Female,4.16,G-112-T9
+G-112,239,CCEB,Katia Tan,Female,4.04,G-112-T9
+G-112,4234,EEE,Emma Davis,Female,4.13,G-112-T9
+G-112,5882,CCEB,Ryuu Tanaka,Male,4.1,G-112-T10
+G-112,1159,EEE,Caleb Mitchell,Male,4.09,G-112-T10
+G-112,4150,SBS,Bridgette Villanueva,Female,4.15,G-112-T10
+G-112,5830,MAE,Alice Wang,Female,4.05,G-112-T10
+G-112,502,CCDS,Fern Adams,Female,4.14,G-112-T10
+G-113,4565,CoB (NBS),Rohan Tan,Male,4.17,G-113-T1
+>>>>>>> Stashed changes
 G-113,5740,CCDS,Bharat Menon,Male,3.78,G-113-T1
 G-113,913,SSS,Siti binti Ahmad,Female,4.14,G-113-T1
 G-113,475,EEE,Zara Price,Female,3.85,G-113-T1
@@ -7068,6 +7629,7 @@ G-113,2217,CCDS,Clara Yang,Female,4.12,G-113-T10
 G-113,5045,CoB (NBS),Grace Young,Female,4.01,G-113-T10
 G-113,5843,SoH,Taojie,Female,4.05,G-113-T10
 G-114,366,CoB (NBS),Troy Wong,Male,4.52,G-114-T1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-114,1627,CCEB,Ravi Chandran,Male,3.95,G-114-T1
@@ -7153,6 +7715,23 @@ G-114,4687,CCEB,Sophie Patel,Female,4.02,G-114-T3
 G-114,3540,CoE,Rida Khan,Female,4.02,G-114-T3
 G-114,1410,NIE,Amit Sharma,Male,4.21,G-114-T4
 >>>>>>> Stashed changes
+=======
+G-114,1627,CCEB,Ravi Chandran,Male,3.95,G-114-T1
+G-114,2633,SSS,Lia Harum,Female,4.25,G-114-T1
+G-114,1493,EEE,Kira Foster,Female,3.85,G-114-T1
+G-114,1837,WKW SCI,Mila Wang,Female,3.88,G-114-T1
+G-114,4157,CoE,Rohan Sharma,Male,4.48,G-114-T2
+G-114,3367,MSE,Isaac Lee,Male,4.01,G-114-T2
+G-114,5393,SBS,Jueqi,Female,4.2,G-114-T2
+G-114,4028,CCDS,Svetlana Petrovna,Female,3.94,G-114-T2
+G-114,648,CCEB,Bella Goh,Female,3.95,G-114-T2
+G-114,901,CEE,Orion Setiawan,Male,4.22,G-114-T3
+G-114,2258,MAE,Zachary Tan,Male,4.02,G-114-T3
+G-114,3400,CCDS,Kabir Singh,Female,4.19,G-114-T3
+G-114,4687,CCEB,Sophie Patel,Female,4.02,G-114-T3
+G-114,3540,CoE,Rida Khan,Female,4.02,G-114-T3
+G-114,1410,NIE,Amit Sharma,Male,4.21,G-114-T4
+>>>>>>> Stashed changes
 G-114,319,EEE,Tariq Khan,Male,4.02,G-114-T4
 G-114,2640,CCDS,Lily Tan,Female,4.1,G-114-T4
 G-114,3528,MAE,Gloria Li,Female,4.02,G-114-T4
@@ -7188,6 +7767,7 @@ G-114,454,MAE,Luna Tsai,Female,4.09,G-114-T10
 G-114,4546,CCDS,Cheng Zhang,Female,4.08,G-114-T10
 G-114,5926,EEE,Xander Morris,Male,4.03,G-114-T10
 G-115,548,CCDS,Weimin,Male,4.2,G-115-T1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-115,3648,MAE,Ryoji Yamamoto,Male,3.87,G-115-T1
@@ -7264,6 +7844,20 @@ G-115,27,MAE,Caleb Wright,Male,4.22,G-115-T3
 G-115,5081,CoE,James Wright,Male,3.89,G-115-T3
 G-115,3462,SSS,Anaya Shah,Female,4.19,G-115-T3
 >>>>>>> Stashed changes
+=======
+G-115,3648,MAE,Ryoji Yamamoto,Male,3.87,G-115-T1
+G-115,5095,CoE,Sanya Ahuja,Female,4.29,G-115-T1
+G-115,3807,SoH,Pooja Mehra,Female,3.85,G-115-T1
+G-115,1722,CoB (NBS),Jaxon Young,Male,4.0,G-115-T1
+G-115,3571,EEE,Nathan Davis,Male,4.22,G-115-T2
+G-115,1221,SoH,Derrick Lim,Male,3.9,G-115-T2
+G-115,3207,CoB (NBS),Miyuki Nishimura,Female,4.22,G-115-T2
+G-115,821,MAE,Isabella Ward,Female,3.88,G-115-T2
+G-115,5839,CoE,Kieran Zhao,Male,4.12,G-115-T2
+G-115,27,MAE,Caleb Wright,Male,4.22,G-115-T3
+G-115,5081,CoE,James Wright,Male,3.89,G-115-T3
+G-115,3462,SSS,Anaya Shah,Female,4.19,G-115-T3
+>>>>>>> Stashed changes
 G-115,1146,WKW SCI,Layla Carter,Female,4.01,G-115-T3
 G-115,4330,CoB (NBS),Oliver Lim,Male,4.12,G-115-T3
 G-115,2786,MAE,Alexander Phillips,Male,4.19,G-115-T4
@@ -7301,6 +7895,7 @@ G-115,2921,SoH,Hendrix Yang,Male,4.1,G-115-T10
 G-115,4287,EEE,Samantha Lim,Female,4.12,G-115-T10
 G-115,5254,EEE,Anna Kim,Female,4.04,G-115-T10
 G-115,2920,CCEB,Fiona Li,Female,4.09,G-115-T10
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-116,4736,CoE,Nicolas Ramos,Male,4.52,G-116-T1
@@ -7510,6 +8105,60 @@ G-116,1971,MAE,Samuel Patel,Male,4.13,G-116-T10
 G-117,4519,CoB (NBS),Jin Yu Tan,Male,4.2,G-117-T1
 G-117,2041,CEE,Zhi Wei Lim,Male,4.0,G-117-T1
 >>>>>>> Stashed changes
+=======
+G-116,4736,CoE,Nicolas Ramos,Male,4.52,G-116-T1
+G-116,1646,NIE,Jueqi,Male,3.8,G-116-T1
+G-116,505,MAE,Sophie Martinez,Female,4.22,G-116-T1
+G-116,1484,CCDS,Willow Li,Female,4.05,G-116-T1
+G-116,4087,CEE,Amira Hasan,Female,4.12,G-116-T1
+G-116,5274,CCEB,Hikaru Matsumoto,Male,4.48,G-116-T2
+G-116,1813,EEE,Gavin Smith,Male,4.0,G-116-T2
+G-116,876,MSE,Kimberly Lim,Female,4.2,G-116-T2
+G-116,4492,CCDS,Rina Patel,Female,3.9,G-116-T2
+G-116,5083,SSS,Lucy Chen,Female,4.17,G-116-T2
+G-116,4044,EEE,Henry Liu,Male,4.05,G-116-T3
+G-116,4055,CCDS,Quinn Lim,Male,3.95,G-116-T3
+G-116,3401,MAE,Zoe Brown,Female,4.06,G-116-T3
+G-116,2644,SSS,Serena Xiao,Female,4.01,G-116-T3
+G-116,2868,CoB (NBS),Lorenzo Wu,Male,4.06,G-116-T3
+G-116,2379,CoE,Ashok Nair,Male,4.3,G-116-T4
+G-116,1082,CEE,Zain Ali,Male,4.0,G-116-T4
+G-116,5302,MAE,Sonia Verma,Female,4.17,G-116-T4
+G-116,1530,CCEB,Nurul Aini,Female,4.01,G-116-T4
+G-116,5395,MSE,Fern Ng,Female,4.05,G-116-T4
+G-116,4642,MAE,Aarav Verma,Male,4.16,G-116-T5
+G-116,2970,SPMS,Aarav Gupta,Male,3.88,G-116-T5
+G-116,2951,EEE,Sophia Yang,Female,4.15,G-116-T5
+G-116,1112,CCDS,Anu Iyer,Female,4.01,G-116-T5
+G-116,5825,NIE,Harlan Perdana,Male,4.05,G-116-T5
+G-116,982,SSS,Derek Adams,Male,4.2,G-116-T6
+G-116,174,CCDS,Ahmad Raza,Male,4.01,G-116-T6
+G-116,2894,CCEB,Riley Lin,Female,4.14,G-116-T6
+G-116,2593,SoH,Nina Khan,Female,4.02,G-116-T6
+G-116,890,EEE,Gabriel Edwards,Male,4.12,G-116-T6
+G-116,5341,CoB (NBS),Derek Lee,Male,4.2,G-116-T7
+G-116,2734,CEE,Eric Liu,Male,4.02,G-116-T7
+G-116,3141,SSS,Zahra Yousaf,Female,4.14,G-116-T7
+G-116,2752,MAE,Nguyen Thi Thao,Female,4.03,G-116-T7
+G-116,1801,CCDS,Jovian Liu,Male,4.1,G-116-T7
+G-116,3261,MSE,Asher Hill,Male,4.3,G-116-T8
+G-116,281,EEE,Dong Chen,Male,4.03,G-116-T8
+G-116,1173,WKW SCI,Tina Ho,Female,4.09,G-116-T8
+G-116,2847,MAE,Charlotte Walker,Female,4.03,G-116-T8
+G-116,5679,CEE,Nguyen Minh Quang,Male,4.11,G-116-T8
+G-116,4391,MAE,Mohammed Hafiz,Male,4.19,G-116-T9
+G-116,779,SBS,Adrian Zhang,Male,4.04,G-116-T9
+G-116,2693,CoB (NBS),Nafisa Shah,Female,4.12,G-116-T9
+G-116,2465,SSS,Amina Begum,Female,3.88,G-116-T9
+G-116,1100,CCDS,Maya Ali,Female,4.09,G-116-T9
+G-116,3622,ADM,Dongmei,Male,4.3,G-116-T10
+G-116,540,CEE,Hao Wei Tan,Male,4.2,G-116-T10
+G-116,3302,CoB (NBS),Fengguo,Female,4.1,G-116-T10
+G-116,4725,EEE,Suman Verma,Female,4.05,G-116-T10
+G-116,1971,MAE,Samuel Patel,Male,4.13,G-116-T10
+G-117,4519,CoB (NBS),Jin Yu Tan,Male,4.2,G-117-T1
+G-117,2041,CEE,Zhi Wei Lim,Male,4.0,G-117-T1
+>>>>>>> Stashed changes
 G-117,4332,SSS,Maira Binti Rahman,Female,4.73,G-117-T1
 G-117,1799,CCDS,Kylie Roberts,Female,3.8,G-117-T1
 G-117,5965,CoE,Hani Suharni,Female,4.05,G-117-T1
@@ -7559,6 +8208,7 @@ G-117,760,SSS,Evelyn Rodriguez,Female,4.18,G-117-T10
 G-117,3586,MSE,Shanice Tan,Female,4.05,G-117-T10
 G-117,3372,CoB (NBS),Fuzheng,Female,4.05,G-117-T10
 G-118,2742,CoB (NBS),Uriah Howard,Male,4.52,G-118-T1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-118,2495,CCDS,Rafiq Bin Omar,Male,3.85,G-118-T1
@@ -7619,6 +8269,11 @@ G-118,2495,CCDS,Rafiq Bin Omar,Male,3.85,G-118-T1
 G-118,1228,ADM,Eliana Tan,Female,4.25,G-118-T1
 G-118,472,CoB (NBS),Peyton Simmons,Female,3.87,G-118-T1
 >>>>>>> Stashed changes
+=======
+G-118,2495,CCDS,Rafiq Bin Omar,Male,3.85,G-118-T1
+G-118,1228,ADM,Eliana Tan,Female,4.25,G-118-T1
+G-118,472,CoB (NBS),Peyton Simmons,Female,3.87,G-118-T1
+>>>>>>> Stashed changes
 G-118,5462,MAE,Isaiah Huang,Male,4.08,G-118-T1
 G-118,3304,EEE,Ningyi,Male,4.33,G-118-T2
 G-118,4525,EEE,Chen Liu,Male,3.89,G-118-T2
@@ -7666,6 +8321,7 @@ G-118,4726,EEE,Tanya Tan,Female,4.15,G-118-T10
 G-118,5489,CCDS,Sonya Tan,Female,4.14,G-118-T10
 G-118,3563,CoE,Kiran Reddy,Male,4.09,G-118-T10
 G-119,1435,SoH,Ravi Tan,Male,4.1,G-119-T1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-119,541,NIE,Andrew Wong,Male,3.85,G-119-T1
@@ -7719,6 +8375,11 @@ G-119,3707,EEE,Mila Sanchez,Female,4.08,G-119-T8
 G-119,5519,SoH,Lana Cooper,Female,4.06,G-119-T8
 G-119,2450,CCEB,Katrina Tan,Female,4.05,G-119-T8
 =======
+=======
+G-119,541,NIE,Andrew Wong,Male,3.85,G-119-T1
+G-119,1389,SSS,Felicity Tan,Female,4.12,G-119-T1
+G-119,2804,MAE,Sabrina Tan,Female,3.82,G-119-T1
+>>>>>>> Stashed changes
 =======
 G-119,541,NIE,Andrew Wong,Male,3.85,G-119-T1
 G-119,1389,SSS,Felicity Tan,Female,4.12,G-119-T1
@@ -7821,6 +8482,7 @@ G-12,3475,SBS,Sofia Ali,Female,4.2,G-12-T10
 G-12,4388,SSS,Meera Reddy,Female,4.07,G-12-T10
 G-12,5034,CoE,Aarav Sinha,Male,4.1,G-12-T10
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 G-120,2420,CEE,Faisal Bin Yusof,Male,4.57,G-120-T1
 G-120,641,CCEB,Joni Setiawan,Male,3.9,G-120-T1
@@ -7878,6 +8540,15 @@ G-120,2507,SSS,Yani Rahmadani,Female,4.0,G-120-T1
 G-120,5220,CoB (NBS),Rishi Singh,Male,4.08,G-120-T1
 G-120,3187,MAE,Fauzi Bin Zain,Male,4.52,G-120-T2
 G-120,2945,NIE,Yasir Shah,Male,3.95,G-120-T2
+=======
+G-120,2420,CEE,Faisal Bin Yusof,Male,4.57,G-120-T1
+G-120,641,CCEB,Joni Setiawan,Male,3.9,G-120-T1
+G-120,3721,CoB (NBS),Samantha Lee,Female,4.52,G-120-T1
+G-120,2507,SSS,Yani Rahmadani,Female,4.0,G-120-T1
+G-120,5220,CoB (NBS),Rishi Singh,Male,4.08,G-120-T1
+G-120,3187,MAE,Fauzi Bin Zain,Male,4.52,G-120-T2
+G-120,2945,NIE,Yasir Shah,Male,3.95,G-120-T2
+>>>>>>> Stashed changes
 =======
 G-120,2420,CEE,Faisal Bin Yusof,Male,4.57,G-120-T1
 G-120,641,CCEB,Joni Setiawan,Male,3.9,G-120-T1
@@ -12681,6 +13352,9 @@ G-99,1472,EEE,Queenie Li,Female,4.12,G-99-T10
 G-99,5482,CEE,Joanna Tan,Female,4.02,G-99-T10
 G-99,5762,CCDS,Ruby Nelson,Female,4.08,G-99-T10
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
